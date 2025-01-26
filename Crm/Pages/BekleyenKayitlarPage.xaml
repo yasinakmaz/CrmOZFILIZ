@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crm.Pages.BekleyenKayitlarPage"
+             xmlns:services="clr-namespace:Crm.Services"
+             Title="BekleyenKayitlarPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <services:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter"/>
+            <services:SecimToImageConverter x:Key="SecimToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ScrollView Orientation="Horizontal">
+                <CollectionView x:Name="KayitCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="*,*,*,*,*,*" ColumnSpacing="2" HeightRequest="50">
+                                <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding Secim, Converter={StaticResource SecimToImageConverter}}"></Image>
+                                <Image Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding Resim, Converter={StaticResource ByteArrayToImageSourceConverter}}"></Image>
+                                <Label Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding AdSoyad}" FontSize="16" TextColor="white" FontAttributes="Bold"/>
+                                <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Firma}"  FontSize="16" TextColor="white" FontAttributes="Bold"/>
+                                <Label Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding TelNo}" FontSize="16" TextColor="white" FontAttributes="Bold"/>
+                                <Label Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Sorun}" FontSize="16" TextColor="white" FontAttributes="Bold"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

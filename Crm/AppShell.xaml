@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Crm.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Crm.Pages"
+    Shell.NavBarIsVisible="False"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.TabBarBackgroundColor="#5352ed"
+    Shell.TabBarForegroundColor="#c23616"
+    Shell.TabBarUnselectedColor="Black"
+    FlyoutBackgroundColor="{AppThemeBinding Light=#353b48, Dark=#353b48}"
+    Shell.ForegroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+    Shell.TitleColor="#273c75"
+    Shell.TabBarIsVisible="False"
+    Title="Özfiliz Crm">
+
+    <ShellContent
+        Title="Kayıt Ekle"
+        ContentTemplate="{DataTemplate local:KayitEklePage}"
+        Route="KayitEklePage" />
+
+    <ShellContent
+        Title="Bekleyen Kayıtlar"
+        ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
+        Route="BekleyenKayitlarPage" />
+
+
+</Shell>
