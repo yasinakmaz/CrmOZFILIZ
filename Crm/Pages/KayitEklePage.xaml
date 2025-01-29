@@ -2,99 +2,85 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.KayitEklePage"
+             Style="{StaticResource StlPage}"
              Title="KayitEklePage">
 
     <ScrollView>
-        <Grid BackgroundColor="#718093" Padding="70,20,70,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="120"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="50"/>
+        <StackLayout Margin="20" Spacing="20">
+            <!-- Firma Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Firma İsmi ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Source="https://img.icons8.com/fluency/96/add-contact-to-company.png"></Image>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Firma İsmi Giriniz !*"></Entry>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            </Grid.RowDefinitions>
+            <!-- Ad Soyad Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetkili Ad Soyad ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Source="https://img.icons8.com/3d-fluency/94/user-male-circle.png"></Image>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Yetkili Ad Soyad Giriniz !*"></Entry>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            <RoundRectangle Grid.RowSpan="0" Margin="0,0,0,0" Fill="#353b48" CornerRadius="10,10,0,0"></RoundRectangle>
-            <Entry Grid.RowSpan="0" Placeholder="Müşteri Adı*" x:Name="TxtAd" ReturnType="Next" Style="{StaticResource Key=Txt}"></Entry>
+            <!-- Telefon Numarası Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetkili Telefon Numarası ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Source="https://img.icons8.com/fluency/96/nokia-3310.png"></Image>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*"></Entry>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            <RoundRectangle Grid.Row="1" Margin="0,10,0,0" Fill="#353b48" CornerRadius="0,0,10,10"></RoundRectangle>
-            <Entry Grid.Row="1" Margin="10,10,10,0" Placeholder="Firma İsmi*" x:Name="TxtFirma" ReturnType="Next" Style="{StaticResource Key=Txt}"></Entry>
+            <!-- İkinci Kişi Telefon Numarası Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="İkinci Kişi Telefon Numarası ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Source="https://img.icons8.com/fluency/96/multiple-smartphones.png"></Image>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz"></Entry>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            <RoundRectangle Grid.Row="2" Margin="0,10,0,0" Fill="#353b48" CornerRadius="0,0,10,10"></RoundRectangle>
-            <Entry Grid.Row="2" x:Name="TxtTel" Margin="10,10,10,0" Placeholder="Telefon Numarası* (Örneğin : +90 (000-000-00-00))" ReturnType="Next" Style="{StaticResource Key=Txt}"></Entry>
+            <!-- Anydesk Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anydesk Numarası ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Source="https://img.icons8.com/fluency/96/anydesk.png"></Image>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Anydesk Numarası Giriniz"></Entry>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            <RoundRectangle Grid.Row="3" Fill="#353b48" Margin="0,10,0,0" CornerRadius="0,0,10,10"></RoundRectangle>
-            <Entry Grid.Row="3" x:Name="TxtTel2" Margin="10,10,10,0" Placeholder="Telefon Numarası 2" ReturnType="Next" Style="{StaticResource Key=Txt}"></Entry>
+            <!-- Sorun Border -->
+            <Border Style="{StaticResource BrdStl}" HeightRequest="300">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Sorun'u Lütfen Bu Kısma Yazınız !* ↓"></Label>
+                    <Grid ColumnDefinitions="50,*" Grid.Row="1">
+                        <Image Grid.Column="0" Source="https://img.icons8.com/fluency/96/question.png" VerticalOptions="Start"></Image>
+                        <Editor Grid.Column="1" Style="{StaticResource StlEdt}"></Editor>
+                    </Grid>
+                </Grid>
+            </Border>
 
-            <RoundRectangle Grid.Row="4" Margin="0,10,0,0" Fill="#353b48" CornerRadius="0,0,10,10"></RoundRectangle>
-            <Entry Grid.Row="4" x:Name="TxtAnydesk" Margin="10,10,10,0" Placeholder="Müşteri Anydesk ID" ReturnType="Next" Style="{StaticResource Key=Txt}"></Entry>
-
-            <Editor Grid.Row="5" x:Name="TxtSorun" Margin="0,10,0,0" VerticalOptions="Start" HeightRequest="100" FontAttributes="Bold" Placeholder="Müşteri Sorunu*" BackgroundColor="#353b48" FontFamily="Fredoka "></Editor>
-
-            <Picker Grid.Row="6" x:Name="PckUyg" BackgroundColor="#353b48"></Picker>
-
-            <Grid Grid.Row="8" VerticalOptions="End" HorizontalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
-                <ImageButton x:Name="Btnimage" Clicked="Btnimage_Clicked" Source="https://img.icons8.com/plasticine/100/image.png" Grid.ColumnSpan="0" HorizontalOptions="Center" BorderColor="White" BorderWidth="4" BackgroundColor="#353b48" Grid.Row="2" CornerRadius="100"></ImageButton>
-
-            </Grid>
-
-            <Grid Grid.Row="9" HorizontalOptions="Center">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
-
-                <Label Text="Öncelik Seçiniz.!" Margin="0,30,0,0" FontAttributes="Bold" Grid.Column="2"/>
-
-                <RadioButton Grid.Column="3" x:Name="RdbHigh">
-                    <RadioButton.Content>
-                        <Image Source="https://img.icons8.com/arcade/64/high-priority.png" Aspect="Center" />
-                    </RadioButton.Content>
-                </RadioButton>
-
-                <RadioButton Grid.Column="2" x:Name="RdbMed">
-                    <RadioButton.Content>
-                        <Image Source="https://img.icons8.com/arcade/64/medium-priority.png" Aspect="Center"/>
-                    </RadioButton.Content>
-                </RadioButton>
-
-                <RadioButton Grid.Column="1" x:Name="RdbLow">
-                    <RadioButton.Content>
-                        <Image Source="https://img.icons8.com/arcade/64/low-risk.png" Aspect="Center"/>
-                    </RadioButton.Content>
-                </RadioButton>
-
-            </Grid>
-
-            <Grid Grid.Row="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" x:Name="BtnClear" Clicked="BtnClear_Clicked" Text="Temizle" TextColor="White" BackgroundColor="#353b48" HorizontalOptions="Center" WidthRequest="200"></Button>
-
-                <Button Grid.Column="1" x:Name="BtnAdd" Clicked="BtnAdd_Clicked" Text="Kayıt Ekle" FontAttributes="Bold" BackgroundColor="#00FF00" HorizontalOptions="Center" WidthRequest="200"></Button>
-            </Grid>
-
-            <ActivityIndicator x:Name="Active" HorizontalOptions="Center" VerticalOptions="Center" Color="White" IsRunning="False" IsVisible="True"></ActivityIndicator>
-        </Grid>
+            <!-- Program Border -->
+            <Border Style="{StaticResource BrdStl}">
+                <Grid RowDefinitions="20,*" Margin="10,5,0,0">
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓ !*"></Label>
+                    <Button Grid.Row="1" Text="Program Seçmek İçin Tıklayınız"></Button>
+                </Grid>
+            </Border>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

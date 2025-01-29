@@ -6,24 +6,38 @@
     xmlns:local="clr-namespace:Crm.Pages"
     Shell.NavBarIsVisible="False"
     Shell.FlyoutBehavior="Flyout"
-    Shell.TabBarBackgroundColor="#5352ed"
-    Shell.TabBarForegroundColor="#c23616"
-    Shell.TabBarUnselectedColor="Black"
-    FlyoutBackgroundColor="{AppThemeBinding Light=#353b48, Dark=#353b48}"
-    Shell.ForegroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
-    Shell.TitleColor="#273c75"
+    Shell.ForegroundColor="White"
+    FlyoutBackgroundColor="#0652DD"
     Shell.TabBarIsVisible="False"
     Title="Özfiliz Crm">
 
-    <ShellContent
-        Title="Kayıt Ekle"
-        ContentTemplate="{DataTemplate local:KayitEklePage}"
-        Route="KayitEklePage" />
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Padding="10" ColumnDefinitions="50,*">
+                <Image Grid.Column="0" Source="{Binding Icon}" WidthRequest="50" HeightRequest="50"/>
+                <Label Grid.Column="1" Text="{Binding Title}" Style="{StaticResource LblStl}" VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 
-    <ShellContent
-        Title="Bekleyen Kayıtlar"
-        ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
-        Route="BekleyenKayitlarPage" />
+    <ShellContent Title="Kayıt Ekle"
+                  Icon="https://img.icons8.com/fluency/96/add-phone.png"
+                  ContentTemplate="{DataTemplate local:KayitEklePage}"
+                  Route="KayitEklePage"/>
 
+    <ShellContent Title="Bekleyen Kayıtlar"
+                  Icon="https://img.icons8.com/color/96/hourglass-sand-bottom--v1.png"
+                  ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
+                  Route="BekleyenKayitlarPage"/>
 
+    <ShellContent Title="Onaylanmış Kayıtlar"
+                  Icon="https://img.icons8.com/fluency/96/checkmark--v1.png"
+                  ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
+                  Route="OnaylanmisKayitlarPage"/>
+
+    <ShellContent Title="İptal Edilen Kayıtlar"
+                  Icon="https://img.icons8.com/fluency/96/delete-sign.png"
+                  ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
+                  Route="IptalEdilenKayitlarPage"/>
+    
 </Shell>
