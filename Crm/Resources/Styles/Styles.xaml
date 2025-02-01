@@ -6,7 +6,7 @@
 
 
     <Style TargetType="Page" x:Key="StlPage">
-        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
+    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
     </Style>
 
     <Style TargetType="Entry" x:Key="Txt">
@@ -39,8 +39,17 @@
         <Setter Property="Margin" Value="0,10,10,10"/>
         <Setter Property="IsReadOnly" Value="False"/>
         <Setter Property="IsSpellCheckEnabled" Value="False"/>
-        <Setter Property="Text" Value="Notum :"/>
+        <Setter Property="Placeholder" Value="Notum :"/>
     </Style>
-    
+
+    <Style TargetType="Button" x:Key="BtnStl">
+        <Setter Property="BackgroundColor" Value="{StaticResource SecondaryDark}"/>
+        <Setter Property="BorderColor" Value="{StaticResource White}"/>
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="BorderWidth" Value="2"/>
+        <Setter Property="FontFamily" Value="SegoeUIBold"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontAutoScalingEnabled" Value="True"/>
+    </Style>
 
 </ResourceDictionary>

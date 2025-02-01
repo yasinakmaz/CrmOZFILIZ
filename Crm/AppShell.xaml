@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Crm.Pages"
-    Shell.NavBarIsVisible="False"
+    Shell.NavBarIsVisible="{OnIdiom Desktop=False,Phone=True,Tablet=True,Default=False,Watch=True}"
     Shell.FlyoutBehavior="Flyout"
     Shell.ForegroundColor="White"
     FlyoutBackgroundColor="#0652DD"
@@ -39,5 +39,10 @@
                   Icon="https://img.icons8.com/fluency/96/delete-sign.png"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="IptalEdilenKayitlarPage"/>
-    
+
+    <ShellContent Title="Program Ekle"
+                  Icon="https://img.icons8.com/fluency/96/imac-settings.png"
+                  ContentTemplate="{DataTemplate local:AddRecordProgramPage}"
+                  Route="AddRecordProgramPage"/>
+
 </Shell>

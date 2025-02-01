@@ -1,0 +1,22 @@
+﻿namespace Crm.Model
+{
+    public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
+    {
+        public DbSet<TblProgram> TBLPROGRAM { get; set; }
+
+        private readonly string _connectionString;
+
+        public AppDbContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+        }
+    }
+}

@@ -17,7 +17,7 @@
             SqlPassword = await SecureStorage.GetAsync("SqlPassword");
 
             // SqlConnectionString = $"Data Source={SqlPC};Initial Catalog={SqlDB};User ID={SqlUser};Password={SqlPassword};Trust Server Certificate=True";
-            SqlConnectionString = $"Data Source=.;Initial Catalog=Crm;User ID=sa;Password=123456a.A;Trust Server Certificate=True";
+            SqlConnectionString = $"Data Source=.;Initial Catalog=CrmDB;User ID=sa;Password=123456a.A;Trust Server Certificate=True";
         } 
     }
 }
