@@ -1,24 +1,21 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Crm.Model
+﻿namespace Crm.Model
 {
     public class TblProgram
     {
         [Key]
-        public Guid ID { get; set; }
+        public Guid IND { get; set; }
 
-        public string ProgramAdi { get; set; }
+        public string ProgramName { get; set; }
+        public string ProgramCategory { get; set; }
+        public byte[] ProgramImage { get; set; }
 
-        public byte[] ProgramResim { get; set; }
-
-        public ImageSource ProgramResimSource
+        public ImageSource ProgramImageSource
         {
             get
             {
-                if (ProgramResim != null && ProgramResim.Length > 0)
+                if (ProgramImage != null && ProgramImage.Length > 0)
                 {
-                    return ImageSource.FromStream(() => new MemoryStream(ProgramResim));
+                    return ImageSource.FromStream(() => new MemoryStream(ProgramImage));
                 }
                 return null;
             }

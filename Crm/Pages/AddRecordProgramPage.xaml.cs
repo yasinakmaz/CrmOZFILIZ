@@ -10,8 +10,19 @@ public partial class AddRecordProgramPage : ContentPage
     private void ClearAll()
 	{
 		TxtProgramAdi.Text = string.Empty;
+        TxtProgramCategory.Text = string.Empty;
 		ImgImage.Source = null;
 	}
+
+    private void Isbussy(bool ýsbusy)
+    {
+        ActLoad.IsRunning = ýsbusy;
+        TxtProgramAdi.IsEnabled = !ýsbusy;
+        TxtProgramCategory.IsEnabled = !ýsbusy;
+        BtnPrg.IsEnabled = !ýsbusy;
+        BtnClear.IsEnabled = !ýsbusy;
+        BtnAdd.IsEnabled = !ýsbusy;
+    }
 
     private void BtnClear_Clicked(object sender, EventArgs e)
     {
@@ -20,49 +31,64 @@ public partial class AddRecordProgramPage : ContentPage
 
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
-        await SqlServices.InitializeAsync();
-        string sqlservices = SqlServices.SqlConnectionString;
-
-        if (string.IsNullOrWhiteSpace(TxtProgramAdi.Text) || _programResimByteArray == null)
+        try
         {
-            await DisplayAlert("Hata", "Lütfen tüm alanlarý doldurun!", "Tamam");
-            return;
+            Isbussy(true);
+            await SqlServices.InitializeAsync();
+            string sqlservices = SqlServices.SqlConnectionString;
+
+            if (string.IsNullOrWhiteSpace(TxtProgramAdi.Text) || _programResimByteArray == null)
+            {
+                await DisplayAlert("Hata", "Lütfen tüm alanlarý doldurun!", "Tamam");
+                return;
+            }
+
+            var yeniProgram = new TblProgram
+            {
+                IND = Guid.NewGuid(),
+                ProgramName = TxtProgramAdi.Text,
+                ProgramCategory = TxtProgramCategory.Text,
+                ProgramImage = _programResimByteArray
+            };
+
+            using (var context = new AppDbContext(sqlservices))
+            {
+                context.TBLPROGRAM.Add(yeniProgram);
+                await context.SaveChangesAsync();
+            }
+
+            ClearAll();
         }
-
-        var yeniProgram = new TblProgram
+        finally
         {
-            ID = Guid.NewGuid(),
-            ProgramAdi = TxtProgramAdi.Text,
-            ProgramResim = _programResimByteArray
-        };
-
-        using (var context = new AppDbContext(sqlservices))
-        {
-            context.TBLPROGRAM.Add(yeniProgram);
-            await context.SaveChangesAsync();
+            Isbussy(false);
         }
-
-        await DisplayAlert("Baþarýlý", "Program baþarýyla eklendi!", "Tamam");
-
-        ClearAll();
     }
 
     private async void BtnPrg_Clicked(object sender, EventArgs e)
     {
-        var result = await FilePicker.PickAsync(new PickOptions
+        try
         {
-            FileTypes = FilePickerFileType.Images
-        });
+            Isbussy(true);
+            var result = await FilePicker.PickAsync(new PickOptions
+            {
+                FileTypes = FilePickerFileType.Images
+            });
 
-        if (result != null)
+            if (result != null)
+            {
+                using var stream = await result.OpenReadAsync();
+                using var memoryStream = new MemoryStream();
+                await stream.CopyToAsync(memoryStream);
+
+                ImgImage.Source = ImageSource.FromStream(() => new MemoryStream(memoryStream.ToArray()));
+
+                _programResimByteArray = memoryStream.ToArray();
+            }
+        }
+        finally
         {
-            using var stream = await result.OpenReadAsync();
-            using var memoryStream = new MemoryStream();
-            await stream.CopyToAsync(memoryStream);
-
-            ImgImage.Source = ImageSource.FromStream(() => new MemoryStream(memoryStream.ToArray()));
-
-            _programResimByteArray = memoryStream.ToArray();
+            Isbussy(false);
         }
     }
 }

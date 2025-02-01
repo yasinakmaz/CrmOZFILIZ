@@ -4,37 +4,52 @@
              x:Class="Crm.Pages.AddRecordProgramPage"
              Title="Program Ekle">
 
-    <ScrollView>
-        <StackLayout Orientation="Vertical" Margin="10" Spacing="10">
+    <Grid>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="10" Spacing="10">
 
-            <Border Style="{StaticResource BrdStl}">
-                <Grid RowDefinitions="20,*" Margin="10">
-                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Adı ↓"></Label>
-                    <Entry x:Name="TxtProgramAdi" Grid.Row="1" Placeholder="Program Adı Giriniz !*" Style="{StaticResource Txt}"></Entry>
-                </Grid>
-            </Border>
-
-            <Border Style="{StaticResource BrdStl}">
-                <Grid RowDefinitions="20,*" Margin="10">
-                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Resim ↓"></Label>
-                    <Button Grid.Row="1" x:Name="BtnPrg" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}"></Button>
-                </Grid>
-            </Border>
-
-            <Border Style="{StaticResource BrdStl}" HeightRequest="200" Margin="10">
-                <Border Style="{StaticResource BrdStl}" HorizontalOptions="Center" HeightRequest="200">
-                    <Image x:Name="ImgImage" Aspect="AspectFit"></Image>
+                <!-- ProgramNameBrd -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Adı ↓"></Label>
+                        <Entry x:Name="TxtProgramAdi" Grid.Row="1" Placeholder="Program Adı Giriniz !*" Style="{StaticResource Txt}"></Entry>
+                    </Grid>
                 </Border>
-            </Border>
 
-            <Border Style="{StaticResource BrdStl}" HeightRequest="60">
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
-                    <Button Clicked="BtnClear_Clicked" Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
-                    <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Programı Ekle" ImageSource="add.png"></Button>
-                </Grid>
-            </Border>
+                <!-- ProgramCategoryBrd -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Kategorisi ↓"></Label>
+                        <Entry x:Name="TxtProgramCategory" Grid.Row="1" Placeholder="Program Kategorisi Giriniz !*" Style="{StaticResource Txt}"></Entry>
+                    </Grid>
+                </Border>
 
-        </StackLayout>
-    </ScrollView>
+                <!-- ProgramImageButtonBrd -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Resim ↓"></Label>
+                        <Button Grid.Row="1" x:Name="BtnPrg" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}"></Button>
+                    </Grid>
+                </Border>
+
+                <!-- ProgramImageShowBrd -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="200" Margin="10">
+                    <Border Style="{StaticResource BrdStl}" HorizontalOptions="Center" HeightRequest="200">
+                        <Image x:Name="ImgImage" Aspect="AspectFit"></Image>
+                    </Border>
+                </Border>
+
+                <!-- ProgramControlBrd -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="60">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
+                        <Button Clicked="BtnClear_Clicked" Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Programı Ekle" ImageSource="add.png"></Button>
+                    </Grid>
+                </Border>
+
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator x:Name="ActLoad" Color="White"></ActivityIndicator>
+    </Grid>
     
 </ContentPage>

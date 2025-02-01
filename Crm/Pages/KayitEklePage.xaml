@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.KayitEklePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:Crm.Model"
              Style="{StaticResource StlPage}"
              Title="Kayıt Ekle">
 
-    <ScrollView>
+    <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
         <StackLayout Margin="20" Spacing="20">
             <!-- Firma Border -->
             <Border Style="{StaticResource BrdStl}">
@@ -36,7 +37,11 @@
                     <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetkili Telefon Numarası ↓ !*"></Label>
                     <Grid ColumnDefinitions="50,*" Grid.Row="1">
                         <Image Source="https://img.icons8.com/fluency/96/nokia-3310.png"></Image>
-                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*"></Entry>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
+                            <Entry.Behaviors>
+                                <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
+                            </Entry.Behaviors>
+                        </Entry>
                     </Grid>
                 </Grid>
             </Border>
@@ -44,10 +49,14 @@
             <!-- İkinci Kişi Telefon Numarası Border -->
             <Border Style="{StaticResource BrdStl}">
                 <Grid RowDefinitions="20,*" Margin="10,5,0,0">
-                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="İkinci Kişi Telefon Numarası ↓"></Label>
+                    <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yedek Telefon Numarası ↓"></Label>
                     <Grid ColumnDefinitions="50,*" Grid.Row="1">
                         <Image Source="https://img.icons8.com/fluency/96/multiple-smartphones.png"></Image>
-                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz"></Entry>
+                        <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz">
+                            <Entry.Behaviors>
+                                <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
+                            </Entry.Behaviors>
+                        </Entry>
                     </Grid>
                 </Grid>
             </Border>
@@ -75,18 +84,18 @@
             </Border>
 
             <!-- Program Border -->
-            <Border Style="{StaticResource BrdStl}" HeightRequest="150">
+            <Border Style="{StaticResource BrdStl}" HeightRequest="190">
                 <Grid RowDefinitions="20,*" Margin="10,5,0,0">
                     <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓ !*"></Label>
                     <CollectionView Grid.Row="1" x:Name="ProgramList" ItemsLayout="HorizontalList" HorizontalScrollBarVisibility="Never">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:TblProgram">
-                                <Border Style="{StaticResource BrdStl}" HeightRequest="120">
-                                    <Grid RowDefinitions="*,40" WidthRequest="150">
-                                        <Image Grid.Row="0" Source="{Binding ProgramResimSource}" Aspect="Fill"></Image>
-                                        <Grid ColumnDefinitions="40,*" Grid.Row="1">
-                                            <RadioButton Grid.Column="0" GroupName="Program"></RadioButton>
-                                            <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="{Binding ProgramAdi}"></Label>
+                                <Border Style="{StaticResource BrdStl}" HeightRequest="150" BackgroundColor="{StaticResource SecondaryDark}">
+                                    <Grid RowDefinitions="*,50" WidthRequest="150">
+                                        <Image Grid.Row="0" Source="{Binding ProgramImageSource}" Aspect="Fill"></Image>
+                                        <Grid ColumnDefinitions="40,auto" Grid.Row="1" HorizontalOptions="Center">
+                                            <CheckBox Grid.Column="0" x:Name="ChkProgram"></CheckBox>
+                                            <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="{Binding ProgramName}"></Label>
                                         </Grid>
                                     </Grid>
                                 </Border>
@@ -97,14 +106,13 @@
             </Border>
 
             <!-- Tarih Border -->
-            <Border Style="{StaticResource BrdStl}" HeightRequest="90">
-                <Grid RowDefinitions="50,*" Margin="10,10,0,0">
-                    <Label Grid.Row="0" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Tarih Seçimi → !*"></Label>
-                    <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center">
-                        <RadioButton x:Name="RdbNowDate" CheckedChanged="RdbNowDate_CheckedChanged" Content="Şimdiki Tarih" GroupName="Date"></RadioButton>
-                        <RadioButton x:Name="RdbRandevuDate" Content="Randevu Belirle" GroupName="Date"></RadioButton>
+            <Border Style="{StaticResource BrdStl}" HeightRequest="50">
+                <Grid ColumnDefinitions="auto,*" Margin="20,0,0,0" ColumnSpacing="10">
+                    <Label Grid.Column="0" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Randevu Belirle → !*"></Label>
+                    <HorizontalStackLayout Grid.Column="1" Spacing="10">
+                        <RadioButton x:Name="DatePck" Content="Randevu Tarihi Belirle"></RadioButton>
+                        <DatePicker></DatePicker>
                     </HorizontalStackLayout>
-                    <DatePicker x:Name="DatePck" IsEnabled="False" IsVisible="False" Grid.Row="1" HorizontalOptions="Center"></DatePicker>
                 </Grid>
             </Border>
 
@@ -116,7 +124,7 @@
                         <Border Grid.Column="0" Style="{StaticResource BrdStl}" HeightRequest="150" BackgroundColor="{StaticResource ThirdyDark}">
                             <Grid RowDefinitions="*,50">
                                 <Image Grid.Row="0" Source="https://img.icons8.com/fluency/96/complaint.png" HorizontalOptions="Center"></Image>
-                                <RadioButton Grid.Row="1" HorizontalOptions="Center" Content="Özel Durum" GroupName="BakimAnlasmasiDurum"></RadioButton>
+                                <RadioButton x:Name="RdbAnlasmaozeldurum" CheckedChanged="RdbAnlasmaozeldurum_CheckedChanged" Grid.Row="1" HorizontalOptions="Center" Content="Özel Durum" GroupName="BakimAnlasmasiDurum"></RadioButton>
                             </Grid>
                         </Border>
 
