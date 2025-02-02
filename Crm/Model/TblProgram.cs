@@ -4,7 +4,6 @@
     {
         [Key]
         public Guid IND { get; set; }
-
         public string ProgramName { get; set; }
         public string ProgramCategory { get; set; }
         public byte[] ProgramImage { get; set; }

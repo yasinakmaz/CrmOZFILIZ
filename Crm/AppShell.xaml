@@ -45,4 +45,20 @@
                   ContentTemplate="{DataTemplate local:AddRecordProgramPage}"
                   Route="AddRecordProgramPage"/>
 
+    <ShellContent Title="Anlaşma Ekle"
+                  Icon="https://img.icons8.com/fluency/96/signing-a-document.png"
+                  ContentTemplate="{DataTemplate local:AddAgreementPage}"
+                  Route="AddAgreementPage"/>
+
+    <ShellContent Title="Kullanıcı Ekle"
+                  Icon="https://img.icons8.com/color/144/google-contacts.png"
+                  ContentTemplate="{DataTemplate local:AddPersonPage}"
+                  Route="AddPersonPage"/>
+    
+    <ShellContent Title="Yetki Tanımla"
+                  Icon="https://img.icons8.com/fluency/96/wallmount-camera.png"
+                  ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
+                  Route="AddUserAuthorityPage"/>
+
+
 </Shell>

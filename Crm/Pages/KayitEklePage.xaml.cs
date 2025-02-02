@@ -1,63 +1,79 @@
-﻿using Microsoft.IdentityModel.Tokens;
-
-namespace Crm.Pages;
+﻿namespace Crm.Pages;
 
 public partial class KayitEklePage : ContentPage
 {
+    string sqlservices;
     public KayitEklePage()
     {
         InitializeComponent();
-        LoadProgramList();
     }
-    private async void LoadProgramList()
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await SqlServices.InitializeAsync();
+        sqlservices = SqlServices.SqlConnectionString;
+        LoadData();
+    }
+
+    private async void LoadData()
     {
         try
         {
-            await SqlServices.InitializeAsync();
-            string sqlservices = SqlServices.SqlConnectionString;
-
-            using (var context = new AppDbContext(sqlservices))
+            if (string.IsNullOrEmpty(sqlservices))
             {
-                var programlar = await context.TBLPROGRAM
-                                              .OrderBy(p => p.ProgramName)
-                                              .ToListAsync();
-
-                ProgramList.ItemsSource = programlar ?? new List<TblProgram>();
+                await Shell.Current.DisplayAlert("Hata", "Bağlantı dizesi yüklenemedi!", "Tamam");
+                return;
             }
+
+            List<TblProgram> programs;
+            List<TblAgreement> agreements;
+            await using (var programContext = new AppDbContext(sqlservices))
+            {
+                programs = await programContext.TBLPROGRAM.OrderBy(p => p.ProgramName).ToListAsync();
+            }
+            await using (var agreementContext = new AppDbContext(sqlservices))
+            {
+                agreements = await agreementContext.TBLAGREEMENT.OrderBy(a => a.AgreementName).ToListAsync();
+            }
+
+            ProgramList.ItemsSource = programs ?? new List<TblProgram>();
+            AgreementList.ItemsSource = agreements ?? new List<TblAgreement>();
         }
         catch (SqlException ex)
         {
-            Console.WriteLine($"SQL Hatası: {ex.Message}");
-            ProgramList.ItemsSource = new List<TblProgram>();
+            await Shell.Current.DisplayAlert("Sistem", $"Sql Hatası : {ex.Message}", "Tamam");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Genel Hata: {ex.Message}");
-            ProgramList.ItemsSource = new List<TblProgram>();
+            await Shell.Current.DisplayAlert("Sistem", $"Genel Hata : {ex.Message}", "Tamam");
         }
     }
 
-    private async void RdbAnlasmaozeldurum_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    private void DatePck_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if(DatePck.IsChecked == true)
+        {
+            DtpPck.IsVisible = true;
+        }
+        else
+        { DtpPck.IsVisible = false; }
+    }
+
+    private void RefreshView_Refreshing(object sender, EventArgs e)
     {
         try
         {
-            if(RdbAnlasmaozeldurum.IsChecked == true)
-            {
-                string result = await DisplayPromptAsync("Sistem", "Özel Durum Nedininizi Belirtiniz !*");
-                if (string.IsNullOrWhiteSpace(result)) 
-                { 
-                    RdbAnlasmaozeldurum.IsChecked = false; 
-                    await Toast.Make("Ekrana dokunmadınız!", ToastDuration.Long).Show(); 
-                } 
-                else {}
-            }
+            Refresh.IsRefreshing = true;
+            LoadData();
         }
-        catch (Exception ex)
+        catch (SqlException ex) 
         {
-            await DisplayAlert("Sistem", $"Hata : {ex.Message}", "Tamam");
+            Refresh.IsRefreshing = false;
+            Shell.Current.DisplayAlert("Sistem", $"Sql Hatası : {ex.Message}", "Tamam");
         }
         finally
         {
+            Refresh.IsRefreshing = false;
         }
     }
 }

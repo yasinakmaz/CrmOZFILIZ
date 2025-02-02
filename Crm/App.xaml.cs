@@ -37,5 +37,6 @@
         window.Y = (disp.Height / disp.Density - window.Height) / 2;
 #endif
         }
+
     }
 }

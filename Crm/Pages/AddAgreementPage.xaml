@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crm.Pages.AddAgreementPage"
+             Style="{StaticResource StlPage}"
+             Title="Anlaşma Ekle">
+
+    <Grid>
+        <ScrollView>
+            <StackLayout Margin="10" Spacing="10">
+
+                <!-- Agreement Name Border -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma İsmi Giriniz ↓ !*"></Label>
+                        <Entry x:Name="TxtAgreementName" Grid.Row="1" Style="{StaticResource Txt}" Placeholder="İsim Giriniz"></Entry>
+                    </Grid>
+                </Border>
+
+                <!-- Agreement Image FolderPicker Border -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Resmi Seçiniz ↓ !*"></Label>
+                        <Button Clicked="BtnPrg_Clicked" x:Name="BtnImagePicker" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Resim Seçiniz"></Button>
+                    </Grid>
+                </Border>
+
+                <!-- Agreement ImageShow Border -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="200">
+                    <Border Style="{StaticResource BrdStl}" HorizontalOptions="Center" HeightRequest="200">
+                        <Image x:Name="ImageShow" Aspect="AspectFit"></Image>
+                    </Border>
+                </Border>
+
+                <!-- Agreement Special Case Border -->
+                <Grid ColumnDefinitions="30,*" HorizontalOptions="Center">
+                    <CheckBox Grid.Column="0" CheckedChanged="ChkSpecialCase_CheckedChanged" Color="White" x:Name="ChkSpecialCase"></CheckBox>
+                    <Label Grid.Column="1" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Özel Durum (Seçildiğinde Açıklama Girilmesi Gerekir)"></Label>
+                </Grid>
+
+                <!-- Agreement Control -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="60">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
+                        <Button Grid.Column="0" Clicked="BtnClear_Clicked" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Anlaşma Ekle" ImageSource="add.png"></Button>
+                    </Grid>
+                </Border>
+
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator x:Name="ActLoad" HorizontalOptions="Center" VerticalOptions="Center" Color="White"></ActivityIndicator>
+    </Grid>
+    
+</ContentPage>

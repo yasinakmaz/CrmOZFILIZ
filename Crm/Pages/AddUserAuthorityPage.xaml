@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crm.Pages.AddUserAuthorityPage"
+             Style="{StaticResource StlPage}"
+             Title="Yetki Tanımla">
+
+    <ScrollView>
+        <Grid>
+            <StackLayout Margin="20" Spacing="20">
+
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetki Adı Giriniz ↓ !*" />
+                        <Entry x:Name="TxtAuthName" Grid.Row="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" />
+                    </Grid>
+                </Border>
+
+                <!-- Teknik Destek Kaydı Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="140">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Teknik Destek Kaydı Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkTeknikKayitAcma" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Teknik Destek Kaydı Açabilsin" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkTeknikAtama" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Teknik Destek Sayfasında Anlık Kişi Ataması Yapabilsin" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkTeknikDurumAcma" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Teknik Destek Sayfasında Anlık Durumu Açabilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Bekleyen Kayıtlar Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="70">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Bekleyen Kayıtlar Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkBekleyenKayitlar" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Bekleyen Kayıtlara Girebilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Onaylı Kayıtlar Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="70">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Onaylı Kayıtlar Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkOnayliKayitlar" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Onaylı Kayıtlara Girebilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- İptal Edilen Kayıtlar Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="70">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="İptal Edilen Kayıtlar Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkIptalKayitlar" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- İptal Edilen Kayıtlara Girebilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Kullanıcı Ekleme Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="110">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Ekleme Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkKullaniciEkle" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Kullanıcı Ekleme Sayfasına Girebilsin" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkKullaniciGuncelle" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Kullanıcı Güncellemesi Yapabilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Yetki Tanımlama -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="110">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Ekleme Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkYetkiPage" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Yetki Sayfasına Girebilsin" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkYetkiUpdate" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Yetki Güncellemesi Yapabilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource BrdStl}" HeightRequest="60">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
+                        <Button Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png" />
+                        <Button Grid.Column="1" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Programı Ekle" ImageSource="add.png" />
+                    </Grid>
+                </Border>
+
+            </StackLayout>
+            <ActivityIndicator x:Name="ActLoad" HorizontalOptions="Center" VerticalOptions="Center" Color="White" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

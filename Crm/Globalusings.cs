@@ -9,3 +9,4 @@ global using Microsoft.EntityFrameworkCore;
 global using System.ComponentModel.DataAnnotations;
 global using CommunityToolkit.Maui.Alerts;
 global using CommunityToolkit.Maui.Core;
+global using Microsoft.Extensions.Logging;

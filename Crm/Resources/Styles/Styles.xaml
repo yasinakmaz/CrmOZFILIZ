@@ -19,6 +19,7 @@
         <Setter Property="HeightRequest" Value="50"/>
         <Setter Property="Margin" Value="0,0,10,0"></Setter>
         <Setter Property="ReturnType" Value="Next"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
     </Style>
 
     <Style TargetType="Border" x:Key="BrdStl">
@@ -50,6 +51,11 @@
         <Setter Property="FontFamily" Value="SegoeUIBold"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontAutoScalingEnabled" Value="True"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+
+    <Style TargetType="RadioButton" x:Key="RdbStl">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
     </Style>
 
 </ResourceDictionary>
