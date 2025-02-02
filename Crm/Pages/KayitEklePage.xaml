@@ -113,7 +113,7 @@
                             <Label Grid.Column="0" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Randevu Belirle → !*"></Label>
                             <ScrollView Grid.Column="1">
                                 <Grid ColumnDefinitions="30,160,110,50,50">
-                                    <CheckBox Grid.Column="0" Style="{StaticResource RdbStl}" CheckedChanged="DatePck_CheckedChanged" x:Name="DatePck"></CheckBox>
+                                    <CheckBox Grid.Column="0" Color="White" Style="{StaticResource RdbStl}" CheckedChanged="DatePck_CheckedChanged" x:Name="DatePck"></CheckBox>
                                     <Label Grid.Column="1" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Randevu Tarihi Belirle →"></Label>
                                     <DatePicker Grid.Column="2" x:Name="DtpPck" IsVisible="False"></DatePicker>
                                 </Grid>
@@ -131,9 +131,9 @@
                                 <DataTemplate x:DataType="model:TblAgreement">
                                     <Border Style="{StaticResource BrdStl}" HeightRequest="150" BackgroundColor="{StaticResource SecondaryDark}">
                                         <Grid RowDefinitions="*,50" Margin="10,0,10,0" MinimumWidthRequest="150" MaximumWidthRequest="250">
-                                            <Image Grid.Row="0" Source="{Binding AgreementImageSource}" Aspect="Center"></Image>
+                                            <Image Grid.Row="0" Source="{Binding AgreementImageSource}" BackgroundColor="Transparent" Aspect="AspectFit"></Image>
                                             <Grid ColumnDefinitions="auto" Grid.Row="1" HorizontalOptions="Center">
-                                                <RadioButton Grid.Column="0" Content="{Binding AgreementName}" GroupName="Agreement"></RadioButton>
+                                                <RadioButton Grid.Column="0" BackgroundColor="Transparent" Content="{Binding AgreementName}" GroupName="Agreement"></RadioButton>
                                             </Grid>
                                         </Grid>
                                     </Border>
