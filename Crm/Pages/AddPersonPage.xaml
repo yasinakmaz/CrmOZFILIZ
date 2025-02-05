@@ -12,8 +12,10 @@
                 
                 <!-- Kullanıcı Resmi Border -->
                 <Grid HeightRequest="200" RowDefinitions="150,50" RowSpacing="5">
-                    <Border Grid.Row="0" Style="{StaticResource BrdStl}" HeightRequest="150" WidthRequest="150" StrokeShape="RoundRectangle 100"></Border>
-                    <Button Grid.Row="1" Style="{StaticResource BtnStl}" Text="Kullanıcı Resmi Seç" HorizontalOptions="Center"></Button>
+                    <Border Grid.Row="0" Style="{StaticResource BrdStl}" HeightRequest="150" WidthRequest="150" StrokeShape="RoundRectangle 100">
+                        <Image x:Name="ImgImage" Aspect="AspectFit"></Image>
+                    </Border>
+                    <Button x:Name="BtnImagePicker" Clicked="BtnImagePicker_Clicked" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Kullanıcı Resmi Seç" HorizontalOptions="Center"></Button>
                 </Grid>
                 
                 <!-- Kullanıcı UserName Border -->
@@ -22,7 +24,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Adı ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/tag--v1.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Kullanıcı Adı Giriniz" TextTransform="None"></Entry>
+                            <Entry x:Name="TxtUserName" TextTransform="Lowercase" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Kullanıcı Adı Giriniz"></Entry>
                         </Grid>
                     </Grid>
                 </Border>
@@ -33,7 +35,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Şahsi Adı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/color/96/show-permit-card.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <Entry x:Name="TxtFirstName" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
                         </Grid>
                     </Grid>
                 </Border>
@@ -44,7 +46,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Soyadı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/show-permit-card.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <Entry x:Name="TxtLastName" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
                         </Grid>
                     </Grid>
                 </Border>
@@ -55,7 +57,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Email ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/circled-envelope.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <Entry x:Name="TxtEmail" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
                         </Grid>
                     </Grid>
                 </Border>
@@ -66,7 +68,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Telefon Numarası ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/iphone14-pro--v1.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
+                            <Entry x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
                                 <Entry.Behaviors>
                                     <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
                                 </Entry.Behaviors>
@@ -87,21 +89,11 @@
                     </Grid>
                 </Border>
 
-                <Border Style="{StaticResource BrdStl}" HeightRequest="90">
-                    <Grid RowDefinitions="20,*" Margin="10">
-                        <Label Style="{StaticResource LblStl}" Grid.Row="0" Text="Kullanıcı Yetkisi Seçiniz ↓ !*"></Label>
-                        <Grid Grid.Row="1" ColumnDefinitions="50,*">
-                            <Image Grid.Column="0" Source="https://img.icons8.com/fluency/96/block.png"></Image>
-                            <Picker Grid.Column="1" x:Name="PckPersonAuthority" BackgroundColor="{StaticResource SecondaryDark}"></Picker>
-                        </Grid>
-                    </Grid>
-                </Border>
-                
                 <!-- Kullanıcı Control -->
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
-                        <Button Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
-                        <Button Grid.Column="1" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kullanıcı Ekle" ImageSource="add.png"></Button>
+                        <Button Grid.Column="0" Clicked="BtnClear_Clicked" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kullanıcı Ekle" ImageSource="add.png"></Button>
                     </Grid>
                 </Border>
 

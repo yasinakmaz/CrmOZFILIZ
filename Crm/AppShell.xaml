@@ -55,7 +55,7 @@
                   ContentTemplate="{DataTemplate local:AddPersonPage}"
                   Route="AddPersonPage"/>
     
-    <ShellContent Title="Yetki Tanımla"
+    <ShellContent Title="Yetki Tanımla" IsEnabled="False" IsVisible="False"
                   Icon="https://img.icons8.com/fluency/96/wallmount-camera.png"
                   ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
                   Route="AddUserAuthorityPage"/>
