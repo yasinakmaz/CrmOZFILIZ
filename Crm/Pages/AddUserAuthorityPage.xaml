@@ -116,8 +116,8 @@
 
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
-                        <Button Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png" />
-                        <Button Grid.Column="1" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Programı Ekle" ImageSource="add.png" />
+                        <Button Grid.Column="0" Clicked="BtnClear_Clicked" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png" />
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Yetki Ekle" ImageSource="add.png" />
                     </Grid>
                 </Border>
 

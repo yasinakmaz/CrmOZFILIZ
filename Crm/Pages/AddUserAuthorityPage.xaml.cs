@@ -90,6 +90,7 @@ public partial class AddUserAuthorityPage : ContentPage
                     }
 
                     await context.SaveChangesAsync();
+                    await Navigation.PushModalAsync(new AddPersonPage());
                 }
             }
             catch (SqlException ex)
