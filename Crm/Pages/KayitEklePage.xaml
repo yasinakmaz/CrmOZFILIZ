@@ -4,8 +4,13 @@
              x:Class="Crm.Pages.KayitEklePage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:Crm.Model"
+             NavigationPage.HasBackButton="False"
              Style="{StaticResource StlPage}"
              Title="Kayıt Ekle">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
 
     <RefreshView x:Name="Refresh" Refreshing="RefreshView_Refreshing">
     <ScrollView HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
@@ -40,7 +45,7 @@
                             <Image Source="https://img.icons8.com/fluency/96/nokia-3310.png"></Image>
                             <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
                                 <Entry.Behaviors>
-                                    <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
+                                    <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
                                 </Entry.Behaviors>
                             </Entry>
                         </Grid>
@@ -55,7 +60,7 @@
                             <Image Source="https://img.icons8.com/fluency/96/multiple-smartphones.png"></Image>
                             <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz">
                                 <Entry.Behaviors>
-                                    <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
+                                    <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
                                 </Entry.Behaviors>
                             </Entry>
                         </Grid>
@@ -110,7 +115,7 @@
                 <Border Style="{StaticResource BrdStl}" HeightRequest="50">
                     <ScrollView Orientation="Horizontal">
                         <Grid ColumnDefinitions="auto,*" Margin="20,0,0,0" ColumnSpacing="10">
-                            <Label Grid.Column="0" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Randevu Belirle → !*"></Label>
+                            <Label Grid.Column="0" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Randevu Belirle →"></Label>
                             <ScrollView Grid.Column="1">
                                 <Grid ColumnDefinitions="30,160,110,50,50">
                                     <CheckBox Grid.Column="0" Color="White" Style="{StaticResource RdbStl}" CheckedChanged="DatePck_CheckedChanged" x:Name="DatePck"></CheckBox>

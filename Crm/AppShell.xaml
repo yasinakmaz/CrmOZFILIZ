@@ -20,6 +20,10 @@
         </DataTemplate>
     </Shell.ItemTemplate>
 
+    <ShellContent Title="Login Ekranı" FlyoutItemIsVisible="False"
+                  ContentTemplate="{DataTemplate local:LoginPage}"
+                  Route="LoginPage"/>
+
     <ShellContent Title="Kayıt Ekle"
                   Icon="https://img.icons8.com/fluency/96/add-phone.png"
                   ContentTemplate="{DataTemplate local:KayitEklePage}"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crm.Pages.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             NavigationPage.HasBackButton="False">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <Grid Margin="50,0,50,0" VerticalOptions="Center">
+            <StackLayout Spacing="10">
+                <Label Style="{StaticResource LblStl}" Text="Özfiliz Crm" HorizontalOptions="Center" FontSize="Header"></Label>
+                <Entry x:Name="TxtEmail" Style="{StaticResource Txt}" TextTransform="Default" Placeholder="E-Mail Veya Kullanıcı Adı"></Entry>
+                <Entry x:Name="TxtPassword" Style="{StaticResource Txt}" TextTransform="Default" Placeholder="Parola"></Entry>
+                <Button x:Name="BtnLogin" Clicked="BtnLogin_Clicked" Style="{StaticResource BtnStl}" HeightRequest="50" Text="Giriş Yap" CornerRadius="5" ImageSource="login.png" Margin="0,0,10,0"></Button>
+            </StackLayout>
+        </Grid>
+        <ActivityIndicator x:Name="ActLoad" Color="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+    </Grid>
+    
+</ContentPage>

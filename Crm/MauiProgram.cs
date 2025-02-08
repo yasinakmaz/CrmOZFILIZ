@@ -17,6 +17,13 @@
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<KayitEklePage>();
+            builder.Services.AddTransient<BekleyenKayitlarPage>();
+            builder.Services.AddTransient<AddAgreementPage>();
+            builder.Services.AddTransient<AddPersonPage>();
+            builder.Services.AddTransient<AddUserAuthorityPage>();
+            builder.Services.AddTransient<AddRecordProgramPage>();
 
             return builder.Build();
         }

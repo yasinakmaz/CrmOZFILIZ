@@ -4,12 +4,15 @@ namespace Crm.Pages;
 
 public partial class AddUserAuthorityPage : ContentPage
 {
-    private Guid guid;
-	public AddUserAuthorityPage(Guid IND)
+	public AddUserAuthorityPage()
 	{
 		InitializeComponent();
-        this.guid = IND;
 	}
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+    }
 
     private void ClearAll()
     {
@@ -81,7 +84,7 @@ public partial class AddUserAuthorityPage : ContentPage
                             {
                                 IND = Guid.NewGuid(),
                                 AuhtorityName = TxtAuthName.Text,
-                                PersonIND = guid,
+                                PersonIND = SqlServices.CreatUserGuid,
                                 PersonAuthorityID = kvp.Key
                             };
 
@@ -90,7 +93,7 @@ public partial class AddUserAuthorityPage : ContentPage
                     }
 
                     await context.SaveChangesAsync();
-                    await Navigation.PushModalAsync(new AddPersonPage());
+                    await Shell.Current.GoToAsync($"///{nameof(AddPersonPage)}");
                 }
             }
             catch (SqlException ex)

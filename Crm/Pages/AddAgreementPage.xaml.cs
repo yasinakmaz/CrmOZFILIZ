@@ -5,7 +5,8 @@ public partial class AddAgreementPage : ContentPage
 	public AddAgreementPage()
 	{
 		InitializeComponent();
-	}
+        AuthorityControl();
+    }
     private byte[] _programResimByteArray;
     private string _SpecialCase = "0";
     private void ClearAll()
@@ -13,6 +14,22 @@ public partial class AddAgreementPage : ContentPage
         TxtAgreementName.Text = string.Empty;
         ImageShow.Source = null;
         ChkSpecialCase.IsChecked = false;
+    }
+
+    private async void AuthorityControl()
+    {
+        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        {
+            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1001);
+            if (giris == true)
+            {
+            }
+            else
+            {
+                GrdShow.IsEnabled = false;
+                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
+            }
+        }
     }
 
     private void Isbussy(bool ýsbusy)

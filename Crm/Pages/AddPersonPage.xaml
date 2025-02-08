@@ -70,7 +70,7 @@
                             <Image Source="https://img.icons8.com/fluency/96/iphone14-pro--v1.png"></Image>
                             <Entry x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
                                 <Entry.Behaviors>
-                                    <toolkit:MaskedBehavior Mask="+0 (XXX)-(XXX)-XX-XX-"/>
+                                    <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
                                 </Entry.Behaviors>
                             </Entry>
                         </Grid>

@@ -27,6 +27,7 @@ public partial class AddPersonPage : ContentPage
     }
     private void ClearAll()
     {
+        ImgImage.Source = null;
         TxtUserName.Text = string.Empty;
         TxtFirstName.Text = string.Empty;
         TxtLastName.Text = string.Empty;
@@ -120,48 +121,62 @@ public partial class AddPersonPage : ContentPage
                 string.IsNullOrWhiteSpace(TxtPhoneNumber.Text) ||
                 string.IsNullOrWhiteSpace(TxtPassword.Text))
             {
-                await Shell.Current.DisplayAlert("Sistem", "Boþ Býrakýlan Alanlar Var", "Tamam");
+                await Shell.Current.DisplayAlert("Sistem", "Boþ býrakýlan alanlar var", "Tamam");
                 return;
             }
 
-            var newuser = new TblPerson
-            {
-                IND = Guid.NewGuid(),
-                UserImage = _addpersonImage,
-                UserName = TxtUserName.Text,
-                FirstName = TxtFirstName.Text,
-                LastName = TxtLastName.Text,
-                Email = TxtEmail.Text,
-                PhoneNumber = TxtPhoneNumber.Text,
-                Password = TxtPassword.Text,
-                Durum = "Aktif",
-                UserCreateDate = DateTime.Now
-            };
-
             using (var context = new AppDbContext(SqlServices.SqlConnectionString))
             {
-                await context.TBLPERSON.AddAsync(newuser);
-                int result = await context.SaveChangesAsync();
+                bool userExists = await context.TBLPERSON.AnyAsync(u => u.UserName == TxtUserName.Text);
+                bool emailExists = await context.TBLPERSON.AnyAsync(u => u.Email == TxtEmail.Text);
 
-                if(result > 0)
+                if (userExists)
                 {
-                    ClearAll();
-                    await Navigation.PushAsync(new AddUserAuthorityPage(newuser.IND));
+                    await Shell.Current.DisplayAlert("Sistem", "Bu Kullanýcý Adý Zaten Kayýtlý", "Tamam");
+                }
+                else if (emailExists)
+                {
+                    await Shell.Current.DisplayAlert("Sistem", "Bu Email Zaten Kayýtlý", "Tamam");
+                }
+                else
+                {
+                    var newuser = new TblPerson
+                    {
+                        IND = Guid.NewGuid(),
+                        UserImage = _addpersonImage,
+                        UserName = TxtUserName.Text,
+                        FirstName = TxtFirstName.Text,
+                        LastName = TxtLastName.Text,
+                        Email = TxtEmail.Text,
+                        PhoneNumber = TxtPhoneNumber.Text,
+                        Password = TxtPassword.Text,
+                        Durum = "Aktif",
+                        UserCreateDate = DateTime.Now
+                    };
+
+                    await context.TBLPERSON.AddAsync(newuser);
+                    int result = await context.SaveChangesAsync();
+
+                    if (result > 0)
+                    {
+                        ClearAll();
+                        SqlServices.CreatUserGuid = newuser.IND;
+                        await Shell.Current.GoToAsync($"{nameof(AddUserAuthorityPage)}");
+                    }
                 }
             }
         }
         catch (SqlException ex)
         {
-            await Shell.Current.DisplayAlert("Sistem", $"Sql Hatasý: {ex.Message}", "Tamam");
+            await Shell.Current.DisplayAlert("Sistem", $"SQL Hatasý: {ex.Message}", "Tamam");
             await Clipboard.SetTextAsync(ex.Message);
         }
         catch (DbUpdateException ex)
         {
             string errorMessage = ex.InnerException?.Message ?? ex.Message;
-            await Shell.Current.DisplayAlert("Sistem", $"Sql Db Hatasý: {errorMessage}", "Tamam");
+            await Shell.Current.DisplayAlert("Sistem", $"SQL Db Hatasý: {errorMessage}", "Tamam");
             await Clipboard.SetTextAsync(errorMessage);
         }
-
         catch (Exception ex)
         {
             await Shell.Current.DisplayAlert("Sistem", $"Sistem Hatasý: {ex.Message}", "Tamam");
@@ -172,5 +187,4 @@ public partial class AddPersonPage : ContentPage
             Isbussy(false);
         }
     }
-
 }

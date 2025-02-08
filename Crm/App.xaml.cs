@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             MainPage = new AppShell();
+            SqlServices.InitializeAsync();
         }
 
         protected override Window CreateWindow(IActivationState activationState)
