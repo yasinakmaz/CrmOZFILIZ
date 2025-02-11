@@ -25,42 +25,42 @@
                   Route="LoginPage"/>
 
     <ShellContent Title="Kayıt Ekle"
-                  Icon="https://img.icons8.com/fluency/96/add-phone.png"
+                  Icon="phone.png"
                   ContentTemplate="{DataTemplate local:KayitEklePage}"
                   Route="KayitEklePage"/>
 
     <ShellContent Title="Bekleyen Kayıtlar"
-                  Icon="https://img.icons8.com/color/96/hourglass-sand-bottom--v1.png"
+                  Icon="sand.png"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="BekleyenKayitlarPage"/>
 
     <ShellContent Title="Onaylanmış Kayıtlar"
-                  Icon="https://img.icons8.com/fluency/96/checkmark--v1.png"
+                  Icon="checkmark.png"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="OnaylanmisKayitlarPage"/>
 
     <ShellContent Title="İptal Edilen Kayıtlar"
-                  Icon="https://img.icons8.com/fluency/96/delete-sign.png"
+                  Icon="delete.png"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="IptalEdilenKayitlarPage"/>
 
     <ShellContent Title="Program Ekle"
-                  Icon="https://img.icons8.com/fluency/96/imac-settings.png"
+                  Icon="imac.png"
                   ContentTemplate="{DataTemplate local:AddRecordProgramPage}"
                   Route="AddRecordProgramPage"/>
 
     <ShellContent Title="Anlaşma Ekle"
-                  Icon="https://img.icons8.com/fluency/96/signing-a-document.png"
+                  Icon="document.png"
                   ContentTemplate="{DataTemplate local:AddAgreementPage}"
                   Route="AddAgreementPage"/>
 
     <ShellContent Title="Kullanıcı Ekle"
-                  Icon="https://img.icons8.com/color/144/google-contacts.png"
+                  Icon="contacts.png"
                   ContentTemplate="{DataTemplate local:AddPersonPage}"
                   Route="AddPersonPage"/>
     
     <ShellContent Title="Yetki Tanımla" IsEnabled="False" IsVisible="False"
-                  Icon="https://img.icons8.com/fluency/96/wallmount-camera.png"
+                  Icon="camera.png"
                   ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
                   Route="AddUserAuthorityPage"/>
 

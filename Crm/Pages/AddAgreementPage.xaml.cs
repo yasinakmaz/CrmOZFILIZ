@@ -6,9 +6,12 @@ public partial class AddAgreementPage : ContentPage
 	{
 		InitializeComponent();
         AuthorityControl();
+        SqlServices.ProgramSelectedItemChanged += OnChange;
     }
     private byte[] _programResimByteArray;
     private string _SpecialCase = "0";
+    private string sqlservices;
+    private bool change;
     private void ClearAll()
     {
         TxtAgreementName.Text = string.Empty;
@@ -20,7 +23,7 @@ public partial class AddAgreementPage : ContentPage
     {
         using (var context = new AppDbContext(SqlServices.SqlConnectionString))
         {
-            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1001);
+            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1008);
             if (giris == true)
             {
             }
@@ -29,6 +32,32 @@ public partial class AddAgreementPage : ContentPage
                 GrdShow.IsEnabled = false;
                 await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
             }
+        }
+    }
+
+    private async void OnChange()
+    {
+        try
+        {
+            sqlservices = SqlServices.SqlConnectionString;
+            TblAgreement agreement;
+            await using (var context = new AppDbContext(sqlservices))
+            {
+                agreement = await context.TBLAGREEMENT.Where(p => p.IND == SqlServices.ProgramUpdateSelectedItem).FirstOrDefaultAsync();
+            }
+
+            if (agreement != null)
+            {
+                TxtAgreementName.Text = agreement.AgreementName;
+                ImageShow.Source = agreement.AgreementImageSource;
+                _programResimByteArray = agreement.AgreementImage;
+                change = true;
+            }
+        }
+        catch (SqlException ex)
+        {
+            await Shell.Current.DisplayAlert("Sistem", $"Sql Hatasý : {ex.Message}", "Tamam");
+            await Clipboard.SetTextAsync(ex.Message);
         }
     }
 
@@ -118,5 +147,10 @@ public partial class AddAgreementPage : ContentPage
     private void ChkSpecialCase_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         if (ChkSpecialCase.IsChecked == true) { _SpecialCase = "1"; } else { _SpecialCase = "0"; }
+    }
+
+    private void BtnShowUpdate_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

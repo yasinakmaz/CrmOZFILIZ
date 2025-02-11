@@ -7,7 +7,15 @@
 
     <Grid>
         <ScrollView>
-            <StackLayout Orientation="Vertical" Margin="10" Spacing="10">
+            <StackLayout Orientation="Vertical" Margin="10" Spacing="10" x:Name="StckLayout">
+
+                <!-- ProgramUpdate -->
+                <Border Style="{StaticResource BrdStl}">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓"></Label>
+                        <Button Grid.Row="1" x:Name="BtnShowUpdate" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="click.png" Text="Program Seçmek İçin Tıklayınız"></Button>
+                    </Grid>
+                </Border>
 
                 <!-- ProgramNameBrd -->
                 <Border Style="{StaticResource BrdStl}">

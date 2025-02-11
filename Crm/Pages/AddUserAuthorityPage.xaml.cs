@@ -9,6 +9,21 @@ public partial class AddUserAuthorityPage : ContentPage
 		InitializeComponent();
 	}
 
+    private async void AuthorityControl()
+    {
+        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        {
+            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1011);
+            if (giris == true)
+            {
+            }
+            else
+            {
+                StckLayout.IsEnabled = false;
+                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
+            }
+        }
+    }
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
@@ -61,18 +76,20 @@ public partial class AddUserAuthorityPage : ContentPage
                 string sqlservices = SqlServices.SqlConnectionString;
 
                 var authorityMapping = new Dictionary<int, CheckBox>
-             {
+                {
                  { 1001, ChkTeknikKayitAcma },
                  { 1002, ChkTeknikAtama },
                  { 1003, ChkTeknikDurumAcma },
                  { 1004, ChkBekleyenKayitlar },
                  { 1005, ChkOnayliKayitlar },
                  { 1006, ChkIptalKayitlar },
-                 { 1007, ChkKullaniciEkle },
-                 { 1008, ChkKullaniciGuncelle },
-                 { 1009, ChkYetkiPage },
-                 { 1010, ChkYetkiUpdate }
-             };
+                 { 1007, ChkProgram },
+                 { 1008, ChkAgreement },
+                 { 1009, ChkKullaniciEkle },
+                 { 1010, ChkKullaniciGuncelle },
+                 { 1011, ChkYetkiPage },
+                 { 1012, ChkYetkiUpdate }
+                };
 
                 using (var context = new AppDbContext(sqlservices))
                 {

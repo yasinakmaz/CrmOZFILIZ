@@ -8,7 +8,7 @@
 
     <Grid>
         <ScrollView>
-            <StackLayout Margin="20" Spacing="20">
+            <StackLayout Margin="20" Spacing="20" x:Name="StckLayout">
                 
                 <!-- Kullanıcı Resmi Border -->
                 <Grid HeightRequest="200" RowDefinitions="150,50" RowSpacing="5">

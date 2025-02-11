@@ -7,7 +7,7 @@
 
     <ScrollView>
         <Grid>
-            <StackLayout Margin="20" Spacing="20">
+            <StackLayout Margin="20" Spacing="20" x:Name="StckLayout">
 
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
@@ -96,10 +96,36 @@
                     </Grid>
                 </Border>
 
+                <!-- Program Ekleme Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="70">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Ekleme Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkProgram" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Program Ekliyebilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Anlaşma Yetkileri -->
+                <Border Style="{StaticResource BrdStl}" HeightRequest="70">
+                    <Grid RowDefinitions="20,*" Margin="10">
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Yetkileri ↓" />
+                        <StackLayout Grid.Row="1">
+                            <Grid ColumnDefinitions="30,*">
+                                <CheckBox x:Name="ChkAgreement" Grid.Column="0" />
+                                <Label Grid.Column="1" VerticalOptions="Center" Style="{StaticResource LblStl}" Text="- Anlaşma Ekliyebilsin" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </Border>
+
                 <!-- Yetki Tanımlama -->
                 <Border Style="{StaticResource BrdStl}" HeightRequest="110">
                     <Grid RowDefinitions="20,*" Margin="10">
-                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Ekleme Yetkileri ↓" />
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetki İşlemleri ↓" />
                         <StackLayout Grid.Row="1">
                             <Grid ColumnDefinitions="30,*">
                                 <CheckBox x:Name="ChkYetkiPage" Grid.Column="0" />

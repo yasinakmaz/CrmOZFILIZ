@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             Size="1000,500"
+             xmlns:model="clr-namespace:Crm.Model"
+             x:DataType="model:TblProgram"
+             Color="{StaticResource PrimaryDark}"
+             x:Class="Crm.Pages.ProgramShowUpdate">
+
+    <Grid>
+        <Grid RowDefinitions="40,50,*" RowSpacing="10">
+            <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="5">
+                <Button Grid.Column="0" ImageSource="image.png" CornerRadius="0" Style="{StaticResource BtnStl}"></Button>
+                <Button Grid.Column="1" Text="Program İsmi" CornerRadius="0" Style="{StaticResource BtnStl}"></Button>
+                <Button Grid.Column="2" Text="Program Kategorisi" CornerRadius="0" Style="{StaticResource BtnStl}"></Button>
+            </Grid>
+
+            <SearchBar Grid.Row="1" TextChanged="SearchBar_TextChanged" x:Name="TxtSearch" Placeholder="Arama Yapınız.!"></SearchBar>
+
+            <Grid Grid.Row="2">
+                <ListView x:Name="LstView" ItemSelected="LstView_ItemSelected" SeparatorColor="Blue" SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Düzenle" IconImageSource="https://img.icons8.com/fluency/100/change--v1.png" x:Name="BtnChange" Clicked="BtnChange_Clicked" CommandParameter="{Binding IND}"/>
+                                    <MenuItem Text="Sil" IconImageSource="delete.png" x:Name="BtnDelete" CommandParameter="{Binding IND}" IsDestructive="True" Clicked="BtnDelete_Clicked"/>
+                                </ViewCell.ContextActions>
+                                <Grid ColumnDefinitions="*,*,*" HeightRequest="100">
+                                    <Image Grid.Column="0" Source="{Binding ProgramImageSource}"></Image>
+                                    <Label Grid.Column="1" Style="{StaticResource LblStl}" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding ProgramName}"></Label>
+                                    <Label Grid.Column="2" Style="{StaticResource LblStl}" VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding ProgramCategory}"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+    
+</mct:Popup>

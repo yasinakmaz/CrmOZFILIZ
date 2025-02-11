@@ -6,4 +6,8 @@
              Style="{StaticResource StlPage}"
              Title="Bekleyen Kayıtlar">
 
+    <Grid x:Name="GrdShow">
+        
+    </Grid>
+    
 </ContentPage>

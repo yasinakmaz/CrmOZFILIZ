@@ -7,8 +7,25 @@ public partial class AddPersonPage : ContentPage
     public AddPersonPage()
 	{
 		InitializeComponent();
+        AuthorityControl();
         TxtPassword.IsPassword = true;
         BtnPasswordHash.ImageSource = "eye.png";
+    }
+
+    private async void AuthorityControl()
+    {
+        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        {
+            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1009);
+            if (giris == true)
+            {
+            }
+            else
+            {
+                StckLayout.IsEnabled = false;
+                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
+            }
+        }
     }
 
     private void Isbussy(bool isbusy)

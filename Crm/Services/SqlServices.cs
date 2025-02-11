@@ -10,6 +10,14 @@
         public static string SqlConnectionString { get; private set; }
         public static Guid CreatUserGuid { get; set; }
         public static Guid LoginUserGuid { get; set; }
+        public static Guid ProgramUpdateSelectedItem { get; set; }
+
+        public static event Action ProgramSelectedItemChanged;
+
+        public static void ChangeProgramSelectedItemChanged()
+        {
+            ProgramSelectedItemChanged?.Invoke();
+        }
 
         public static async Task InitializeAsync()
         {
@@ -20,8 +28,6 @@
 
             // SqlConnectionString = $"Data Source={SqlPC};Initial Catalog={SqlDB};User ID={SqlUser};Password={SqlPassword};Trust Server Certificate=True";
             SqlConnectionString = $"Data Source=10.0.0.84;Initial Catalog=CRMDB;User ID=sa;Password=123456a.A;Trust Server Certificate=True";
-            
-
         } 
     }
 }

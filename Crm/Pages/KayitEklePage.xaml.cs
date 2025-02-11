@@ -6,6 +6,7 @@ public partial class KayitEklePage : ContentPage
     public KayitEklePage()
     {
         InitializeComponent();
+        AuthorityControl();
     }
     protected override async void OnAppearing()
     {
@@ -13,6 +14,22 @@ public partial class KayitEklePage : ContentPage
         await SqlServices.InitializeAsync();
         sqlservices = SqlServices.SqlConnectionString;
         LoadData();
+    }
+
+    private async void AuthorityControl()
+    {
+        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        {
+            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1001);
+            if (giris == true)
+            {
+            }
+            else
+            {
+                StckLayout.IsEnabled = false;
+                await Shell.Current.DisplayAlert("Sistem", "Giriş İzniniz Bulunmamaktadır", "Tamam");
+            }
+        }
     }
 
     private async void LoadData()

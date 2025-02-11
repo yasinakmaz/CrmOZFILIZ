@@ -14,7 +14,7 @@
 
     <RefreshView x:Name="Refresh" Refreshing="RefreshView_Refreshing">
     <ScrollView HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
-            <StackLayout Margin="20" Spacing="20">
+            <StackLayout Margin="20" Spacing="20" x:Name="StckLayout">
                 <!-- Firma Border -->
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10,5,0,0">
