@@ -8,7 +8,7 @@ public partial class AddAgreementPage : ContentPage
         AuthorityControl();
         SqlServices.ProgramSelectedItemChanged += OnChange;
     }
-    private byte[] _programResimByteArray;
+    private byte[] _agreementResimByteArray;
     private string _SpecialCase = "0";
     private string sqlservices;
     private bool change;
@@ -50,7 +50,16 @@ public partial class AddAgreementPage : ContentPage
             {
                 TxtAgreementName.Text = agreement.AgreementName;
                 ImageShow.Source = agreement.AgreementImageSource;
-                _programResimByteArray = agreement.AgreementImage;
+                _agreementResimByteArray = agreement.AgreementImage;
+                _SpecialCase = agreement.SpecialCase;
+                if (_SpecialCase == "1")
+                {
+                    ChkSpecialCase.IsChecked = true;
+                }
+                else
+                {
+                    ChkSpecialCase.IsChecked = false;
+                }
                 change = true;
             }
         }
@@ -63,6 +72,7 @@ public partial class AddAgreementPage : ContentPage
 
     private void Isbussy(bool ýsbusy)
     {
+        BtnShowUpdate.IsEnabled = !ýsbusy;
         ActLoad.IsRunning = ýsbusy;
         TxtAgreementName.IsEnabled = !ýsbusy;
         BtnImagePicker.IsEnabled = !ýsbusy;
@@ -80,31 +90,52 @@ public partial class AddAgreementPage : ContentPage
     {
         try
         {
-            Isbussy(true);
-            await SqlServices.InitializeAsync();
-            string sqlservices = SqlServices.SqlConnectionString;
-
-            if (string.IsNullOrWhiteSpace(TxtAgreementName.Text) || _programResimByteArray == null)
+            if(change == false)
             {
-                await DisplayAlert("Hata", "Lütfen Tüm Alanlarý Doldurun!", "Tamam");
-                return;
+                Isbussy(true);
+                await SqlServices.InitializeAsync();
+                string sqlservices = SqlServices.SqlConnectionString;
+
+                if (string.IsNullOrWhiteSpace(TxtAgreementName.Text) || _agreementResimByteArray == null)
+                {
+                    await DisplayAlert("Hata", "Lütfen Tüm Alanlarý Doldurun!", "Tamam");
+                    return;
+                }
+
+                var yeniagreement = new TblAgreement
+                {
+                    IND = Guid.NewGuid(),
+                    AgreementName = TxtAgreementName.Text,
+                    SpecialCase = _SpecialCase,
+                    AgreementImage = _agreementResimByteArray
+                };
+
+                using (var context = new AppDbContext(sqlservices))
+                {
+                    context.TBLAGREEMENT.Add(yeniagreement);
+                    await context.SaveChangesAsync();
+                }
             }
-
-            var yeniprogram = new TblAgreement
+            else
             {
-                IND = Guid.NewGuid(),
-                AgreementName = TxtAgreementName.Text,
-                SpecialCase = _SpecialCase,
-                AgreementImage = _programResimByteArray
-            };
+                Isbussy(true);
+                await SqlServices.InitializeAsync();
+                string sqlservices = SqlServices.SqlConnectionString;
 
-            using (var context = new AppDbContext(sqlservices))
-            {
-                context.TBLAGREEMENT.Add(yeniprogram);
-                await context.SaveChangesAsync();
+                using (var context = new AppDbContext(sqlservices))
+                {
+                    var mevcutagreement = await context.TBLAGREEMENT.SingleOrDefaultAsync(p => p.IND == SqlServices.ProgramUpdateSelectedItem);
+
+                    if (mevcutagreement != null)
+                    {
+                        mevcutagreement.AgreementName = TxtAgreementName.Text;
+                        mevcutagreement.SpecialCase = _SpecialCase;
+                        mevcutagreement.AgreementImage = _agreementResimByteArray;
+                    }
+
+                    await context.SaveChangesAsync();
+                }
             }
-
-            ClearAll();
         }
         catch (SqlException ex)
         {
@@ -113,6 +144,7 @@ public partial class AddAgreementPage : ContentPage
         }
         finally
         {
+            ClearAll();
             Isbussy(false);
         }
     }
@@ -135,7 +167,7 @@ public partial class AddAgreementPage : ContentPage
 
                 ImageShow.Source = ImageSource.FromStream(() => new MemoryStream(memoryStream.ToArray()));
 
-                _programResimByteArray = memoryStream.ToArray();
+                _agreementResimByteArray = memoryStream.ToArray();
             }
         }
         finally
@@ -149,8 +181,8 @@ public partial class AddAgreementPage : ContentPage
         if (ChkSpecialCase.IsChecked == true) { _SpecialCase = "1"; } else { _SpecialCase = "0"; }
     }
 
-    private void BtnShowUpdate_Clicked(object sender, EventArgs e)
+    private async void BtnShowUpdate_Clicked(object sender, EventArgs e)
     {
-
+        await this.ShowPopupAsync(new AgreementShowUpdate());
     }
 }

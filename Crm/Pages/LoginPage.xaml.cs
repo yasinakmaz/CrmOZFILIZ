@@ -5,7 +5,8 @@ public partial class LoginPage : ContentPage
 	public LoginPage()
 	{
 		InitializeComponent();
-	}
+        BtnPasswordHash.ImageSource = "eye.png";
+    }
 
 	private void IsBusy(bool isBusy)
 	{
@@ -86,6 +87,28 @@ public partial class LoginPage : ContentPage
 		finally
 		{
 			IsBusy(false);
+        }
+    }
+
+    private async void BtnPasswordHash_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if (TxtPassword.IsPassword == true)
+            {
+                TxtPassword.IsPassword = false;
+                BtnPasswordHash.ImageSource = "noneye.png";
+            }
+            else
+            {
+                TxtPassword.IsPassword = true;
+                BtnPasswordHash.ImageSource = "eye.png";
+            }
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Sistem", $"Sistem Hatasý : {ex.Message}", "Tamam");
+            await Clipboard.SetTextAsync(ex.Message);
         }
     }
 }

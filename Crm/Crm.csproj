@@ -80,6 +80,9 @@
 	  <MauiXaml Update="Pages\AddUserAuthorityPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AgreementShowUpdate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\BekleyenKayitlarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
