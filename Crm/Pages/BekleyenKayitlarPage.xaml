@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.BekleyenKayitlarPage"
              xmlns:services="clr-namespace:Crm.Services"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Style="{StaticResource StlPage}"
              Title="Bekleyen Kayıtlar">
 

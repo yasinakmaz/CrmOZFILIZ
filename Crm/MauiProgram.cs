@@ -1,4 +1,6 @@
-﻿namespace Crm
+﻿using UraniumUI;
+
+namespace Crm
 {
     public static class MauiProgram
     {
@@ -8,6 +10,8 @@
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit(options => options.SetShouldEnableSnackbarOnWindows(true))
+                .UseUraniumUI()
+                .UseUraniumUIMaterial()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

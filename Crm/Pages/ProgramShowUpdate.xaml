@@ -5,6 +5,7 @@
              Size="1000,500"
              xmlns:model="clr-namespace:Crm.Model"
              x:DataType="model:TblProgram"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Color="{StaticResource PrimaryDark}"
              x:Class="Crm.Pages.ProgramShowUpdate">
 

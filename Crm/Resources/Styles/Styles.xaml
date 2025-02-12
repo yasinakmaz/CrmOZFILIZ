@@ -1,26 +1,46 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <?xaml-comp compile="true" ?>
-<ResourceDictionary 
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Crm.Behaviors"
+    xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
 
 
     <Style TargetType="Page" x:Key="StlPage">
     <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
     </Style>
 
-    <Style TargetType="Entry" x:Key="Txt">
-        <Setter Property="IsSpellCheckEnabled" Value="False"></Setter>
-        <Setter Property="TextTransform" Value="Uppercase"/>
-        <Setter Property="IsTextPredictionEnabled" Value="True"></Setter>
-        <Setter Property="FontAttributes" Value="None"></Setter>
-        <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
-        <Setter Property="IsReadOnly" Value="False"></Setter>
-        <Setter Property="HeightRequest" Value="50"/>
-        <Setter Property="Margin" Value="0,0,10,0"></Setter>
+    <Style TargetType="md:TextField" x:Key="Txt">
+        <Setter Property="AccentColor" Value="{StaticResource White}"/>
+        <Setter Property="TitleColor" Value="{StaticResource White}"/>
+        <Setter Property="AllowClear" Value="True"/>
+        <Setter Property="BorderColor" Value="{StaticResource White}"/>
+        <Setter Property="Icon" Value="click.png"/>
+        <Setter Property="DisallowClearButtonFocus" Value="False"/>
         <Setter Property="ReturnType" Value="Next"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="IsTextPredictionEnabled" Value="False"/>
+        <Setter Property="Behaviors">
+            <Setter.Value>
+                <behaviors:DisableSpellCheckBehavior/>
+            </Setter.Value>
+        </Setter>
     </Style>
+
+    <!--<Style TargetType="Entry" x:Key="Txt">
+    <Setter Property="IsSpellCheckEnabled" Value="False"></Setter>
+    <Setter Property="TextTransform" Value="Uppercase"/>
+    <Setter Property="IsTextPredictionEnabled" Value="True"></Setter>
+    <Setter Property="FontAttributes" Value="None"></Setter>
+    <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
+    <Setter Property="IsReadOnly" Value="False"></Setter>
+    <Setter Property="HeightRequest" Value="50"/>
+    <Setter Property="Margin" Value="0,0,10,0"></Setter>
+    <Setter Property="ReturnType" Value="Next"/>
+    <Setter Property="FontFamily" Value="Roboto"/>
+    </Style>-->
 
     <Style TargetType="Border" x:Key="BrdStl">
         <Setter Property="BackgroundColor" Value="{StaticResource BluePrimary}"/>

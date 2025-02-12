@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.LoginPage"
              Shell.FlyoutBehavior="Disabled"
+             Style="{StaticResource StlPage}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasBackButton="False">
 
     <Shell.BackButtonBehavior>
@@ -13,10 +15,13 @@
         <Grid Margin="50,0,50,0" VerticalOptions="Center">
             <StackLayout Spacing="10">
                 <Label Style="{StaticResource LblStl}" Text="Özfiliz Crm" HorizontalOptions="Center" FontSize="Header"></Label>
-                <Entry x:Name="TxtEmail" Style="{StaticResource Txt}" TextTransform="Default" Placeholder="E-Mail Veya Kullanıcı Adı"></Entry>
-                <Grid ColumnDefinitions="*,50">
-                    <Entry x:Name="TxtPassword" Style="{StaticResource Txt}" TextTransform="Default" Placeholder="Parola" IsPassword="True"></Entry>
-                    <Button Grid.Column="1" x:Name="BtnPasswordHash" Clicked="BtnPasswordHash_Clicked" Style="{StaticResource BtnStl}" CornerRadius="5"></Button>
+                <md:TextField x:Name="TxtEmail" Style="{StaticResource Txt}" Title="E-Mail Veya Kullanıcı Adı"></md:TextField>
+                <Grid ColumnDefinitions="*">
+                    <md:TextField x:Name="TxtPassword" Style="{StaticResource Txt}" Title="Parola" IsPassword="True">
+                        <md:TextField.Attachments>
+                            <md:TextFieldPasswordShowHideAttachment />
+                        </md:TextField.Attachments>
+                    </md:TextField>
                 </Grid>
                 <Button x:Name="BtnLogin" Clicked="BtnLogin_Clicked" Style="{StaticResource BtnStl}" HeightRequest="50" Text="Giriş Yap" CornerRadius="5" ImageSource="login.png" Margin="0,0,10,0"></Button>
             </StackLayout>

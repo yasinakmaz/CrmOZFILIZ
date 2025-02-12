@@ -4,6 +4,7 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              xmlns:model="clr-namespace:Crm.Model"
              Color="{StaticResource PrimaryDark}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:DataType="model:TblAgreement"
              Size="1000,500"
              x:Class="Crm.Pages.AgreementShowUpdate">

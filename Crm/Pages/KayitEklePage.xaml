@@ -4,6 +4,7 @@
              x:Class="Crm.Pages.KayitEklePage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:Crm.Model"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasBackButton="False"
              Style="{StaticResource StlPage}"
              Title="Kayıt Ekle">
@@ -21,7 +22,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Firma İsmi ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/add-contact-to-company.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Firma İsmi Giriniz !*"></Entry>
+                            <md:TextField Grid.Column="1" Style="{StaticResource Txt}" Title="Firma İsmi Giriniz !*"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -32,7 +33,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetkili Ad Soyad ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/3d-fluency/94/user-male-circle.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Yetkili Ad Soyad Giriniz !*"></Entry>
+                            <md:TextField Grid.Column="1" Style="{StaticResource Txt}" Title="Yetkili Ad Soyad Giriniz !*"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -43,11 +44,11 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetkili Telefon Numarası ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/nokia-3310.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
-                                <Entry.Behaviors>
-                                    <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
-                                </Entry.Behaviors>
-                            </Entry>
+                            <md:TextField Grid.Column="1" Style="{StaticResource Txt}" Title="Telefon Numarası Giriniz !*">
+                                <md:TextField.Behaviors>
+                                    <toolkit:MaskedBehavior Mask="XXX.XXX.XXX-XX" />
+                                </md:TextField.Behaviors>
+                            </md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -58,11 +59,11 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yedek Telefon Numarası ↓"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1" >
                             <Image Source="https://img.icons8.com/fluency/96/multiple-smartphones.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz">
-                                <Entry.Behaviors>
-                                    <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
-                                </Entry.Behaviors>
-                            </Entry>
+                            <md:TextField Grid.Column="1" Style="{StaticResource Txt}" Title="Telefon Numarası Giriniz">
+                                <md:TextField.Behaviors>
+                                    <toolkit:MaskedBehavior Mask="XXX.XXX.XXX-XX" />
+                                </md:TextField.Behaviors>
+                            </md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -73,7 +74,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anydesk Numarası ↓"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/anydesk.png"></Image>
-                            <Entry Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Anydesk Numarası Giriniz"></Entry>
+                            <md:TextField Grid.Column="1" Style="{StaticResource Txt}" Title="Anydesk Numarası Giriniz"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>

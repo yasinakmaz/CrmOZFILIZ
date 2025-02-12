@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.AddPersonPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Style="{StaticResource StlPage}"
              Title="Personel Ekle">
 
@@ -24,7 +25,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Adı ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/tag--v1.png"></Image>
-                            <Entry x:Name="TxtUserName" TextTransform="Lowercase" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Kullanıcı Adı Giriniz"></Entry>
+                            <md:TextField x:Name="TxtUserName" Grid.Column="1" Style="{StaticResource Txt}" Title="Kullanıcı Adı Giriniz"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -35,7 +36,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Şahsi Adı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/color/96/show-permit-card.png"></Image>
-                            <Entry x:Name="TxtFirstName" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <md:TextField x:Name="TxtFirstName" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -46,7 +47,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Soyadı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/show-permit-card.png"></Image>
-                            <Entry x:Name="TxtLastName" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <md:TextField x:Name="TxtLastName" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -57,7 +58,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Email ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/circled-envelope.png"></Image>
-                            <Entry x:Name="TxtEmail" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <md:TextField x:Name="TxtEmail" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -68,11 +69,11 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Telefon Numarası ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/iphone14-pro--v1.png"></Image>
-                            <Entry x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Telefon Numarası Giriniz !*">
+                            <md:TextField x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Title="Telefon Numarası Giriniz !*">
                                 <Entry.Behaviors>
                                     <toolkit:MaskedBehavior Mask="+X (XXX)-(XXX)-XX-XX-"/>
                                 </Entry.Behaviors>
-                            </Entry>
+                            </md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -83,7 +84,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Parola ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*,50" Grid.Row="1" Margin="0,10,10,10">
                             <Image Source="https://img.icons8.com/fluency/96/circled-envelope.png"></Image>
-                            <Entry x:Name="TxtPassword" Grid.Column="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" TextTransform="None"></Entry>
+                            <md:TextField x:Name="TxtPassword" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz"></md:TextField>
                             <Button Grid.Column="2" x:Name="BtnPasswordHash" Clicked="BtnPasswordHash_Clicked" ImageSource="https://img.icons8.com/fluency/96/visible.png" Style="{StaticResource BtnStl}" CornerRadius="5"></Button>
                         </Grid>
                     </Grid>

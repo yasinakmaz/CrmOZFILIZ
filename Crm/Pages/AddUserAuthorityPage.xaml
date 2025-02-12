@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.AddUserAuthorityPage"
              Style="{StaticResource StlPage}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Title="Yetki Tanımla">
 
     <ScrollView>
@@ -12,7 +13,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Yetki Adı Giriniz ↓ !*" />
-                        <Entry x:Name="TxtAuthName" Grid.Row="1" Style="{StaticResource Txt}" Placeholder="Değer Giriniz" />
+                        <md:TextField x:Name="TxtAuthName" Grid.Row="1" Style="{StaticResource Txt}" Title="Değer Giriniz" />
                     </Grid>
                 </Border>
 

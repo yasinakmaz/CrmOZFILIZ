@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.AddRecordProgramPage"
              Style="{StaticResource StlPage}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Title="Program Ekle">
 
     <Grid>
@@ -21,7 +22,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Adı ↓"></Label>
-                        <Entry x:Name="TxtProgramAdi" Grid.Row="1" Placeholder="Program Adı Giriniz !*" Style="{StaticResource Txt}"></Entry>
+                        <md:TextField x:Name="TxtProgramAdi" Grid.Row="1" Title="Program Adı Giriniz !*" Style="{StaticResource Txt}"></md:TextField>
                     </Grid>
                 </Border>
 
@@ -29,7 +30,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Kategorisi ↓"></Label>
-                        <Entry x:Name="TxtProgramCategory" Grid.Row="1" Placeholder="Program Kategorisi Giriniz !*" Style="{StaticResource Txt}"></Entry>
+                        <md:TextField x:Name="TxtProgramCategory" Grid.Row="1" Title="Program Kategorisi Giriniz !*" Style="{StaticResource Txt}"></md:TextField>
                     </Grid>
                 </Border>
 

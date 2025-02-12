@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Crm.Pages.AddAgreementPage"
              Style="{StaticResource StlPage}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Title="Anlaşma Ekle">
 
     <Grid x:Name="GrdShow">
@@ -21,7 +22,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma İsmi Giriniz ↓ !*"></Label>
-                        <Entry x:Name="TxtAgreementName" Grid.Row="1" Style="{StaticResource Txt}" Placeholder="İsim Giriniz"></Entry>
+                        <md:TextField x:Name="TxtAgreementName" Grid.Row="1" Style="{StaticResource Txt}" Title="İsim Giriniz"></md:TextField>
                     </Grid>
                 </Border>
 

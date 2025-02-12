@@ -65,6 +65,11 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="UraniumUI" Version="2.11.0" />
+		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.11.0" />
+		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.11.0" />
+		<PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.11.0" />
+		<PackageReference Include="UraniumUI.Material" Version="2.11.0" />
 	</ItemGroup>
 
 	<ItemGroup>
