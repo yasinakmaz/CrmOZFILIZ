@@ -5,6 +5,8 @@
              Shell.FlyoutBehavior="Disabled"
              Style="{StaticResource StlPage}"
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:m="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
              NavigationPage.HasBackButton="False">
 
     <Shell.BackButtonBehavior>
@@ -15,7 +17,7 @@
         <Grid Margin="50,0,50,0" VerticalOptions="Center">
             <StackLayout Spacing="10">
                 <Label Style="{StaticResource LblStl}" Text="Özfiliz Crm" HorizontalOptions="Center" FontSize="Header"></Label>
-                <md:TextField x:Name="TxtEmail" Style="{StaticResource Txt}" Title="E-Mail Veya Kullanıcı Adı"></md:TextField>
+                <md:TextField x:Name="TxtEmail" Style="{StaticResource Txt}" Title="E-Mail Veya Kullanıcı Adı" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:Regular:}}"></md:TextField>
                 <Grid ColumnDefinitions="*">
                     <md:TextField x:Name="TxtPassword" Style="{StaticResource Txt}" Title="Parola" IsPassword="True">
                         <md:TextField.Attachments>

@@ -21,12 +21,19 @@
         <Setter Property="ReturnType" Value="Next"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="HeightRequest" Value="62"/>
         <Setter Property="IsTextPredictionEnabled" Value="False"/>
-        <Setter Property="Behaviors">
-            <Setter.Value>
-                <behaviors:DisableSpellCheckBehavior/>
-            </Setter.Value>
-        </Setter>
+    </Style>
+
+    <Style TargetType="md:PickerField" x:Key="Pck">
+        <Setter Property="AccentColor" Value="{StaticResource White}"/>
+        <Setter Property="TitleColor" Value="{StaticResource White}"/>
+        <Setter Property="AllowClear" Value="True"/>
+        <Setter Property="BorderColor" Value="{StaticResource White}"/>
+        <Setter Property="Icon" Value="click.png"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="HeightRequest" Value="62"/>
     </Style>
 
     <!--<Style TargetType="Entry" x:Key="Txt">

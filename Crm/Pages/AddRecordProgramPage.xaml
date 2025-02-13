@@ -14,7 +14,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓"></Label>
-                        <Button Grid.Row="1" x:Name="BtnShowUpdate" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="click.png" Text="Program Seçmek İçin Tıklayınız"></Button>
+                        <Button Grid.Row="1" CornerRadius="10" x:Name="BtnShowUpdate" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="click.png" Text="Program Seçmek İçin Tıklayınız"></Button>
                     </Grid>
                 </Border>
 
@@ -38,7 +38,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Resim ↓"></Label>
-                        <Button Grid.Row="1" x:Name="BtnPrg" Style="{StaticResource BtnStl}" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}"></Button>
+                        <Button Grid.Row="1" x:Name="BtnPrg" CornerRadius="10" Style="{StaticResource BtnStl}" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}"></Button>
                     </Grid>
                 </Border>
 

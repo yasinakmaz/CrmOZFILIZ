@@ -65,17 +65,6 @@ public partial class KayitEklePage : ContentPage
             await Shell.Current.DisplayAlert("Sistem", $"Genel Hata : {ex.Message}", "Tamam");
         }
     }
-
-    private void DatePck_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if(DatePck.IsChecked == true)
-        {
-            DtpPck.IsVisible = true;
-        }
-        else
-        { DtpPck.IsVisible = false; }
-    }
-
     private void RefreshView_Refreshing(object sender, EventArgs e)
     {
         try
@@ -92,5 +81,15 @@ public partial class KayitEklePage : ContentPage
         {
             Refresh.IsRefreshing = false;
         }
+    }
+
+    private void DatePck_CheckChanged(object sender, EventArgs e)
+    {
+        if (DatePck.IsChecked == true)
+        {
+            DtpPck.IsVisible = true;
+        }
+        else
+        { DtpPck.IsVisible = false; }
     }
 }
