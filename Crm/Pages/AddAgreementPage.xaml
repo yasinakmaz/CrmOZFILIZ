@@ -4,6 +4,7 @@
              x:Class="Crm.Pages.AddAgreementPage"
              Style="{StaticResource StlPage}"
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              Title="Anlaşma Ekle">
 
     <Grid x:Name="GrdShow">
@@ -13,8 +14,8 @@
                 <!-- AgreementUpdate -->
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
-                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓"></Label>
-                        <Button Grid.Row="1" x:Name="BtnShowUpdate" CornerRadius="10" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="click.png" Text="Program Seçmek İçin Tıklayınız"></Button>
+                        <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Seçiniz ↓"></Label>
+                        <Button Grid.Row="1" x:Name="BtnShowUpdate" CornerRadius="10" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" Text="Anlaşma Seçmek İçin Tıklayınız" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Manage_search}}"></Button>
                     </Grid>
                 </Border>
 
@@ -22,7 +23,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma İsmi Giriniz ↓ !*"></Label>
-                        <md:TextField x:Name="TxtAgreementName" Grid.Row="1" Style="{StaticResource Txt}" Title="İsim Giriniz"></md:TextField>
+                        <md:TextField x:Name="TxtAgreementName" Grid.Row="1" Style="{StaticResource Txt}" Title="İsim Giriniz" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Short_text}}"></md:TextField>
                     </Grid>
                 </Border>
 
@@ -30,7 +31,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Resmi Seçiniz ↓ !*"></Label>
-                        <Button Clicked="BtnPrg_Clicked" CornerRadius="10" x:Name="BtnImagePicker" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Resim Seçiniz"></Button>
+                        <Button Clicked="BtnPrg_Clicked" CornerRadius="10" x:Name="BtnImagePicker" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Resim Seçiniz" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Image}}"></Button>
                     </Grid>
                 </Border>
 
@@ -42,16 +43,15 @@
                 </Border>
 
                 <!-- Agreement Special Case Border -->
-                <Grid ColumnDefinitions="30,*" HorizontalOptions="Center">
-                    <CheckBox Grid.Column="0" CheckedChanged="ChkSpecialCase_CheckedChanged" Color="White" x:Name="ChkSpecialCase"></CheckBox>
-                    <Label Grid.Column="1" Style="{StaticResource LblStl}" VerticalOptions="Center" Text="Özel Durum (Seçildiğinde Açıklama Girilmesi Gerekir)"></Label>
+                <Grid ColumnDefinitions="*" HorizontalOptions="Center">
+                    <md:CheckBox Grid.Column="0" CheckChanged="ChkSpecialCase_CheckChanged" Style="{StaticResource ChkStl}" Text="Özel Durum (Seçildiğinde Açıklama Girilmesi Gerekir)" Color="White" x:Name="ChkSpecialCase"></md:CheckBox>
                 </Grid>
 
                 <!-- Agreement Control -->
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
                         <Button Grid.Column="0" Clicked="BtnClear_Clicked" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
-                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Anlaşma Ekle" ImageSource="add.png"></Button>
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kaydet" ImageSource="add.png"></Button>
                     </Grid>
                 </Border>
 

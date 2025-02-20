@@ -69,6 +69,7 @@
 		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.11.0" />
 		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.11.0" />
 		<PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.11.0" />
+		<PackageReference Include="UraniumUI.Icons.MaterialSymbols" Version="2.11.0" />
 		<PackageReference Include="UraniumUI.Material" Version="2.11.0" />
 	</ItemGroup>
 

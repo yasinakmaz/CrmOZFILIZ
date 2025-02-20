@@ -12,6 +12,7 @@
             Routing.RegisterRoute(nameof(AddPersonPage), typeof(AddPersonPage));
             Routing.RegisterRoute(nameof(AddUserAuthorityPage), typeof(AddUserAuthorityPage));
             Routing.RegisterRoute(nameof(AddRecordProgramPage), typeof(AddRecordProgramPage));
+            LblUserName.Text = PublicServices.UserFullName;
         }
     }
 }

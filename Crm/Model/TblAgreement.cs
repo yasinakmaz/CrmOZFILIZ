@@ -1,6 +1,6 @@
 ﻿namespace Crm.Model
 {
-    public class TblAgreement
+    public record TblAgreement
     {
         [Key]
         public Guid IND { get; set; }

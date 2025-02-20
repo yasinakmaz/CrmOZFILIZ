@@ -100,7 +100,7 @@ public partial class AddUserAuthorityPage : ContentPage
                             var tblauth = new TblPersonAuthority
                             {
                                 IND = Guid.NewGuid(),
-                                AuhtorityName = TxtAuthName.Text,
+                                AuthorityName = TxtAuthName.Text,
                                 PersonIND = SqlServices.CreatUserGuid,
                                 PersonAuthorityID = kvp.Key
                             };

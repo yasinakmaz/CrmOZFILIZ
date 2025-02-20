@@ -64,6 +64,9 @@ public partial class LoginPage : ContentPage
                     }
 
                     SqlServices.LoginUserGuid = user.IND;
+                    PublicServices.UserFirstName = user.FirstName;
+                    PublicServices.UserLastName = user.LastName;
+                    PublicServices.UserFullName = $"{PublicServices.UserFirstName} {PublicServices.UserLastName}";
                     await Shell.Current.GoToAsync($"{nameof(KayitEklePage)}");
                 }
 			}

@@ -17,6 +17,7 @@ namespace Crm
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFontAwesomeIconFonts();
+                    fonts.AddMaterialIconFonts();
                 });
 
 #if DEBUG

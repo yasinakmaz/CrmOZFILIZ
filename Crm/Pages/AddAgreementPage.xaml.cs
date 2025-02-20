@@ -176,13 +176,13 @@ public partial class AddAgreementPage : ContentPage
         }
     }
 
-    private void ChkSpecialCase_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (ChkSpecialCase.IsChecked == true) { _SpecialCase = "1"; } else { _SpecialCase = "0"; }
-    }
-
     private async void BtnShowUpdate_Clicked(object sender, EventArgs e)
     {
         await this.ShowPopupAsync(new AgreementShowUpdate());
+    }
+
+    private void ChkSpecialCase_CheckChanged(object sender, EventArgs e)
+    {
+        if (ChkSpecialCase.IsChecked == true) { _SpecialCase = "1"; } else { _SpecialCase = "0"; }
     }
 }

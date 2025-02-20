@@ -4,6 +4,7 @@
              x:Class="Crm.Pages.AddRecordProgramPage"
              Style="{StaticResource StlPage}"
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              Title="Program Ekle">
 
     <Grid>
@@ -14,7 +15,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Seçiniz ↓"></Label>
-                        <Button Grid.Row="1" CornerRadius="10" x:Name="BtnShowUpdate" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="click.png" Text="Program Seçmek İçin Tıklayınız"></Button>
+                        <Button Grid.Row="1" CornerRadius="10" x:Name="BtnShowUpdate" Clicked="BtnShowUpdate_Clicked" Style="{StaticResource BtnStl}" Margin="5" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Search}}" Text="Program Seçmek İçin Tıklayınız"></Button>
                     </Grid>
                 </Border>
 
@@ -22,7 +23,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Adı ↓"></Label>
-                        <md:TextField x:Name="TxtProgramAdi" Grid.Row="1" Title="Program Adı Giriniz !*" Style="{StaticResource Txt}"></md:TextField>
+                        <md:TextField x:Name="TxtProgramAdi" Grid.Row="1" Title="Program Adı Giriniz !*" Style="{StaticResource Txt}" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Soap}}"></md:TextField>
                     </Grid>
                 </Border>
 
@@ -30,7 +31,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Kategorisi ↓"></Label>
-                        <md:TextField x:Name="TxtProgramCategory" Grid.Row="1" Title="Program Kategorisi Giriniz !*" Style="{StaticResource Txt}"></md:TextField>
+                        <md:TextField x:Name="TxtProgramCategory" Grid.Row="1" Title="Program Kategorisi Giriniz !*" Style="{StaticResource Txt}" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Category}}"></md:TextField>
                     </Grid>
                 </Border>
 
@@ -38,7 +39,7 @@
                 <Border Style="{StaticResource BrdStl}">
                     <Grid RowDefinitions="20,*" Margin="10">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Program Resim ↓"></Label>
-                        <Button Grid.Row="1" x:Name="BtnPrg" CornerRadius="10" Style="{StaticResource BtnStl}" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}"></Button>
+                        <Button Grid.Row="1" x:Name="BtnPrg" CornerRadius="10" Style="{StaticResource BtnStl}" Clicked="BtnPrg_Clicked" Text="Program Resmi Seçiniz !*" BackgroundColor="{StaticResource SecondaryDark}" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Image}}"></Button>
                     </Grid>
                 </Border>
 
@@ -53,7 +54,7 @@
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
                         <Button Clicked="BtnClear_Clicked" Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
-                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Programı Ekle" ImageSource="add.png"></Button>
+                        <Button Grid.Column="1" Clicked="BtnAdd_Clicked" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kaydet" ImageSource="add.png"></Button>
                     </Grid>
                 </Border>
 

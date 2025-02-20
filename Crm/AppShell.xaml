@@ -4,12 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Crm.Pages"
+    xmlns:model="clr-namespace:Crm.Model"
     Shell.NavBarIsVisible="{OnIdiom Desktop=False,Phone=True,Tablet=True,Default=False,Watch=True}"
     Shell.FlyoutBehavior="Flyout"
     Shell.ForegroundColor="White"
     FlyoutBackgroundColor="#0652DD"
     Shell.TabBarIsVisible="False"
     Title="Özfiliz Crm">
+
+    
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -44,17 +47,17 @@
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="IptalEdilenKayitlarPage"/>
 
-    <ShellContent Title="Program Ekle"
+    <ShellContent Title="Program Kaydet"
                   Icon="imac.png"
                   ContentTemplate="{DataTemplate local:AddRecordProgramPage}"
                   Route="AddRecordProgramPage"/>
 
-    <ShellContent Title="Anlaşma Ekle"
+    <ShellContent Title="Anlaşma Kaydet"
                   Icon="document.png"
                   ContentTemplate="{DataTemplate local:AddAgreementPage}"
                   Route="AddAgreementPage"/>
 
-    <ShellContent Title="Kullanıcı Ekle"
+    <ShellContent Title="Kullanıcı Kaydet"
                   Icon="contacts.png"
                   ContentTemplate="{DataTemplate local:AddPersonPage}"
                   Route="AddPersonPage"/>
@@ -63,6 +66,18 @@
                   Icon="camera.png"
                   ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
                   Route="AddUserAuthorityPage"/>
+
+    <Shell.FlyoutFooter>
+        <Grid RowDefinitions="*,50,50">
+            <Grid Grid.Row="0">
+                <Frame HeightRequest="150" WidthRequest="150" CornerRadius="100" IsClippedToBounds="True">
+                    <Image x:Name="ImgImage" Margin="-20" Aspect="AspectFill"></Image>
+                </Frame>
+            </Grid>
+            <Label Grid.Row="1" Style="{StaticResource LblStl}" x:Name="LblUserName" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Button Grid.Row="2" Style="{StaticResource BtnStl}" Text="Profilim →"/>
+        </Grid>
+    </Shell.FlyoutFooter>
 
 
 </Shell>

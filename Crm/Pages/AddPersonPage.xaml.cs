@@ -9,7 +9,6 @@ public partial class AddPersonPage : ContentPage
 		InitializeComponent();
         AuthorityControl();
         TxtPassword.IsPassword = true;
-        BtnPasswordHash.ImageSource = "eye.png";
     }
 
     private async void AuthorityControl()
@@ -38,7 +37,6 @@ public partial class AddPersonPage : ContentPage
         TxtEmail.IsEnabled = !isbusy;
         TxtPhoneNumber.IsEnabled = !isbusy;
         TxtPassword.IsEnabled = !isbusy;
-        BtnPasswordHash.IsEnabled = !isbusy;
         BtnClear.IsEnabled = !isbusy;
         BtnAdd.IsEnabled = !isbusy;
     }
@@ -72,33 +70,6 @@ public partial class AddPersonPage : ContentPage
 
                 _addpersonImage = memoryStream.ToArray();
             }
-        }
-        finally
-        {
-            Isbussy(false);
-        }
-    }
-    private async void BtnPasswordHash_Clicked(object sender, EventArgs e)
-    {
-		try
-        {
-            Isbussy(true);
-            if (TxtPassword.IsPassword == true)
-            {
-                TxtPassword.IsPassword = false;
-                BtnPasswordHash.ImageSource = "noneye.png";
-            }
-            else
-            {
-                TxtPassword.IsPassword = true;
-                BtnPasswordHash.ImageSource = "eye.png";
-            }
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Sistem", $"Sistem Hatasý : {ex.Message}", "Tamam");
-            await Clipboard.SetTextAsync(ex.Message);
-            Isbussy(false);
         }
         finally
         {
