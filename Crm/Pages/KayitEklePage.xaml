@@ -7,6 +7,7 @@
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasBackButton="False"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             Shell.FlyoutBehavior="Flyout"
              Style="{StaticResource StlPage}"
              Title="Kayıt Ekle">
 

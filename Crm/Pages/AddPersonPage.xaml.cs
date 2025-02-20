@@ -22,7 +22,7 @@ public partial class AddPersonPage : ContentPage
             else
             {
                 StckLayout.IsEnabled = false;
-                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
+                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr.", "Tamam");
             }
         }
     }
@@ -76,7 +76,6 @@ public partial class AddPersonPage : ContentPage
             Isbussy(false);
         }
     }
-
     private async void BtnClear_Clicked(object sender, EventArgs e)
     {
         try
@@ -95,7 +94,6 @@ public partial class AddPersonPage : ContentPage
             Isbussy(false);
         }
     }
-
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
         try

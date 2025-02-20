@@ -11,6 +11,10 @@ public partial class KayitEklePage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+        });
         await SqlServices.InitializeAsync();
         sqlservices = SqlServices.SqlConnectionString;
         LoadData();

@@ -29,7 +29,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Adı ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/tag--v1.png"></Image>
-                            <md:TextField x:Name="TxtUserName" Grid.Column="1" IsEnabled="False" Style="{StaticResource Txt}" Title="Kullanıcı Adı" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Person}}"></md:TextField>
+                            <md:TextField TextChanged="TxtUserName_TextChanged" x:Name="TxtUserName" Grid.Column="1" IsEnabled="False" Style="{StaticResource Txt}" Title="Kullanıcı Adı" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Person}}"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -40,7 +40,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Şahsi Adı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/color/96/show-permit-card.png"></Image>
-                            <md:TextField x:Name="TxtFirstName" Grid.Column="1" Style="{StaticResource Txt}" Title="İsim" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Short_text}}"></md:TextField>
+                            <md:TextField TextChanged="TxtFirstName_TextChanged" x:Name="TxtFirstName" Grid.Column="1" Style="{StaticResource Txt}" Title="İsim" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Short_text}}"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -51,7 +51,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Soyadı ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/show-permit-card.png"></Image>
-                            <md:TextField x:Name="TxtLastName" Grid.Column="1" Style="{StaticResource Txt}" Title="Soyad" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Short_text}}"></md:TextField>
+                            <md:TextField TextChanged="TxtLastName_TextChanged" x:Name="TxtLastName" Grid.Column="1" Style="{StaticResource Txt}" Title="Soyad" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Short_text}}"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -62,7 +62,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Email ↓ !* (Benzersiz Olmalı)"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/circled-envelope.png"></Image>
-                            <md:TextField x:Name="TxtEmail" Grid.Column="1" IsEnabled="False" Style="{StaticResource Txt}" Title="Email" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Mail}}"></md:TextField>
+                            <md:TextField TextChanged="TxtEmail_TextChanged" x:Name="TxtEmail" Grid.Column="1" IsEnabled="False" Style="{StaticResource Txt}" Title="Email" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Mail}}"></md:TextField>
                         </Grid>
                     </Grid>
                 </Border>
@@ -73,7 +73,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Kullanıcı Telefon Numarası ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1">
                             <Image Source="https://img.icons8.com/fluency/96/iphone14-pro--v1.png"></Image>
-                            <md:TextField x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Title="Telefon Numarası !*" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Phone_callback}}">
+                            <md:TextField TextChanged="TxtPhoneNumber_TextChanged" x:Name="TxtPhoneNumber" Grid.Column="1" Style="{StaticResource Txt}" Title="Telefon Numarası !*" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Phone_callback}}">
                                 <md:TextField.EntryBehaviors>
                                     <toolkit:MaskedBehavior Mask="XXX-XXX-XX-XX-" />
                                 </md:TextField.EntryBehaviors>
@@ -88,7 +88,7 @@
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Parola ↓ !*"></Label>
                         <Grid ColumnDefinitions="50,*" Grid.Row="1" Margin="0,10,10,10">
                             <Image Source="https://img.icons8.com/fluency/96/circled-envelope.png"></Image>
-                            <md:TextField x:Name="TxtPassword" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Password}}">
+                            <md:TextField TextChanged="TxtPassword_TextChanged" x:Name="TxtPassword" Grid.Column="1" Style="{StaticResource Txt}" Title="Değer Giriniz" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Password}}">
                                 <md:TextField.Attachments>
                                     <md:TextFieldPasswordShowHideAttachment />
                                 </md:TextField.Attachments>
@@ -99,7 +99,8 @@
 
                 <!-- Kullanıcı Control -->
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
-                    <Grid ColumnDefinitions="*" ColumnSpacing="10" Margin="5">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
+                        <Button Grid.Column="0" x:Name="BtnLogOut" Clicked="BtnLogOut_Clicked" Style="{StaticResource BtnStl}" Text="Çıkış Yap" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Logout}}"></Button>
                         <Button Grid.Column="1" x:Name="BtnAdd" Clicked="BtnAdd_Clicked" Style="{StaticResource BtnStl}" Text="Güncelle" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialOutlined.Person}}"></Button>
                     </Grid>
                 </Border>

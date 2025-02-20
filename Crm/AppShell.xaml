@@ -24,52 +24,66 @@
         </DataTemplate>
     </Shell.ItemTemplate>
 
-    <ShellContent Title="Login Ekranı" FlyoutItemIsVisible="False"
+    <ShellContent x:Name="LoginPage" 
+                  Title="Login Ekranı" 
+                  FlyoutItemIsVisible="False"
                   ContentTemplate="{DataTemplate local:LoginPage}"
                   Route="LoginPage"/>
 
     <ShellContent Title="Kayıt Ekle"
                   Icon="phone.png"
+                  x:Name="KayitEklePage"
                   ContentTemplate="{DataTemplate local:KayitEklePage}"
                   Route="KayitEklePage"/>
 
     <ShellContent Title="Bekleyen Kayıtlar"
                   Icon="sand.png"
+                  x:Name="BekleyenKayitlarPage"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="BekleyenKayitlarPage"/>
 
     <ShellContent Title="Onaylanmış Kayıtlar"
                   Icon="checkmark.png"
+                  x:Name="OnaylanmisKayitlarPage"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="OnaylanmisKayitlarPage"/>
 
     <ShellContent Title="İptal Edilen Kayıtlar"
                   Icon="delete.png"
+                  x:Name="IptalEdilenKayitlarPage"
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="IptalEdilenKayitlarPage"/>
 
     <ShellContent Title="Program Kaydet"
                   Icon="imac.png"
+                  x:Name="AddRecordProgramPage"
                   ContentTemplate="{DataTemplate local:AddRecordProgramPage}"
                   Route="AddRecordProgramPage"/>
 
     <ShellContent Title="Anlaşma Kaydet"
                   Icon="document.png"
+                  x:Name="AddAgreementPage"
                   ContentTemplate="{DataTemplate local:AddAgreementPage}"
                   Route="AddAgreementPage"/>
 
     <ShellContent Title="Kullanıcı Kaydet"
+                  x:Name="AddPersonPages"
                   Icon="contacts.png"
                   ContentTemplate="{DataTemplate local:AddPersonPage}"
                   Route="AddPersonPage"/>
     
-    <ShellContent Title="Yetki Tanımla" IsEnabled="False" IsVisible="False"
+    <ShellContent Title="Yetki Tanımla" 
+                  IsEnabled="False" 
+                  IsVisible="False"
                   Icon="camera.png"
                   ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
                   Route="AddUserAuthorityPage"/>
 
-    <ShellContent Title="Profilim" IsEnabled="True" IsVisible="True"
+    <ShellContent Title="Profilim" 
+                  IsEnabled="True" 
+                  IsVisible="True"
                   Icon="contacts.png"
+                  x:Name="MyProfilePage"
                   ContentTemplate="{DataTemplate local:MyProfilePage}"
                   Route="MyProfilePage"/>
 
