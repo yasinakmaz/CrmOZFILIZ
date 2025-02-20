@@ -12,7 +12,14 @@
             Routing.RegisterRoute(nameof(AddPersonPage), typeof(AddPersonPage));
             Routing.RegisterRoute(nameof(AddUserAuthorityPage), typeof(AddUserAuthorityPage));
             Routing.RegisterRoute(nameof(AddRecordProgramPage), typeof(AddRecordProgramPage));
-            LblUserName.Text = PublicServices.UserFullName;
+            Routing.RegisterRoute(nameof(MyProfilePage), typeof(MyProfilePage));
+            PublicServices.LoginChanged += PublicServices_LoginChanged;
+        }
+
+        private void PublicServices_LoginChanged()
+        {
+            LblUserName.Text = $"{PublicServices.UserFullName}";
+            ImgImage.Source = PublicServices.profileImage;
         }
     }
 }

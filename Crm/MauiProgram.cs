@@ -30,6 +30,7 @@ namespace Crm
             builder.Services.AddTransient<AddPersonPage>();
             builder.Services.AddTransient<AddUserAuthorityPage>();
             builder.Services.AddTransient<AddRecordProgramPage>();
+            builder.Services.AddTransient<MyProfilePage>();
 
             return builder.Build();
         }

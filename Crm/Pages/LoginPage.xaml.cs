@@ -67,7 +67,12 @@ public partial class LoginPage : ContentPage
                     PublicServices.UserFirstName = user.FirstName;
                     PublicServices.UserLastName = user.LastName;
                     PublicServices.UserFullName = $"{PublicServices.UserFirstName} {PublicServices.UserLastName}";
+                    if (user.UserImage != null && user.UserImage.Length > 0)
+                    {
+                        PublicServices.profileImage = ImageSource.FromStream(() => new MemoryStream(user.UserImage));
+                    }
                     await Shell.Current.GoToAsync($"{nameof(KayitEklePage)}");
+                    PublicServices.PushLoginChanged(true);
                 }
 			}
 			else

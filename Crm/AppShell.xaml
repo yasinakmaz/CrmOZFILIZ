@@ -9,6 +9,7 @@
     Shell.FlyoutBehavior="Flyout"
     Shell.ForegroundColor="White"
     FlyoutBackgroundColor="#0652DD"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
     Shell.TabBarIsVisible="False"
     Title="Özfiliz Crm">
 
@@ -67,17 +68,21 @@
                   ContentTemplate="{DataTemplate local:AddUserAuthorityPage}"
                   Route="AddUserAuthorityPage"/>
 
-    <Shell.FlyoutFooter>
-        <Grid RowDefinitions="*,50,50">
+    <ShellContent Title="Profilim" IsEnabled="True" IsVisible="True"
+                  Icon="contacts.png"
+                  ContentTemplate="{DataTemplate local:MyProfilePage}"
+                  Route="MyProfilePage"/>
+
+    <Shell.FlyoutHeader>
+        <Grid RowDefinitions="*,50">
             <Grid Grid.Row="0">
                 <Frame HeightRequest="150" WidthRequest="150" CornerRadius="100" IsClippedToBounds="True">
                     <Image x:Name="ImgImage" Margin="-20" Aspect="AspectFill"></Image>
                 </Frame>
             </Grid>
-            <Label Grid.Row="1" Style="{StaticResource LblStl}" x:Name="LblUserName" HorizontalOptions="Center" VerticalOptions="Center"/>
-            <Button Grid.Row="2" Style="{StaticResource BtnStl}" Text="Profilim →"/>
+            <Label Grid.Row="1" Style="{StaticResource LblStl}" FontSize="25" x:Name="LblUserName" HorizontalOptions="Center" VerticalOptions="Center"/>
         </Grid>
-    </Shell.FlyoutFooter>
+    </Shell.FlyoutHeader>
 
 
 </Shell>
