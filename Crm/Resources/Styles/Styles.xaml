@@ -6,7 +6,7 @@
     xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
 
 
-    <Style TargetType="Page" x:Key="StlPage">
+    <Style TargetType="Page" x:Key="StlPage">a
     <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
     </Style>
 
