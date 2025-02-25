@@ -13,3 +13,6 @@ global using Microsoft.Extensions.Logging;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Globalization;
 global using System.ComponentModel;
+global using Crm.Model.Dto;
+global using System.Collections.ObjectModel;
+global using Crm.ViewModels;

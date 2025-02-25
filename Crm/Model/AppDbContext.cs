@@ -6,6 +6,7 @@
         public DbSet<TblAgreement> TBLAGREEMENT { get; set; }
         public DbSet<TblPerson> TBLPERSON { get; set; }
         public DbSet<TblPersonAuthority> TBLPERSONAUTHORITY { get; set; }
+        public DbSet<TblWaiterList> TBLRECORDLIST { get; set; }
 
         private readonly string _connectionString;
 

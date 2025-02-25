@@ -2,12 +2,18 @@ namespace Crm.Pages;
 
 public partial class BekleyenKayitlarPage : ContentPage
 {
+    private readonly WaiterViewModel _viewModel = new();
     public BekleyenKayitlarPage()
 	{
 		InitializeComponent();
-        AuthorityControl();
+        BindingContext = _viewModel;
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        AuthorityControl();
+    }
     private async void AuthorityControl()
     {
         using (var context = new AppDbContext(SqlServices.SqlConnectionString))

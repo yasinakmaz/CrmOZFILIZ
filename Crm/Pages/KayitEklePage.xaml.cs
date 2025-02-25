@@ -48,6 +48,7 @@ public partial class KayitEklePage : ContentPage
 
             List<TblProgram> programs;
             List<TblAgreement> agreements;
+            List<PersonDto> person;
             await using (var programContext = new AppDbContext(sqlservices))
             {
                 programs = await programContext.TBLPROGRAM.OrderBy(p => p.ProgramName).ToListAsync();
@@ -56,9 +57,14 @@ public partial class KayitEklePage : ContentPage
             {
                 agreements = await agreementContext.TBLAGREEMENT.OrderBy(a => a.AgreementName).ToListAsync();
             }
+            await using (var personcontext = new AppDbContext(sqlservices))
+            {
+                person = await personcontext.TBLPERSON.OrderBy(a => a.UserName).Select(u => new PersonDto { FullName = u.FirstName + " " + u.LastName }).ToListAsync();
+            }
 
             ProgramList.ItemsSource = programs ?? new List<TblProgram>();
             AgreementList.ItemsSource = agreements ?? new List<TblAgreement>();
+            PckPersons.ItemsSource = person ?? new List<PersonDto>();
         }
         catch (SqlException ex)
         {

@@ -6,8 +6,8 @@
     xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
 
 
-    <Style TargetType="Page" x:Key="StlPage">a
-    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
+    <Style TargetType="Page" x:Key="StlPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
     </Style>
 
     <Style TargetType="md:TextField" x:Key="Txt">
@@ -33,6 +33,7 @@
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Margin" Value="0,0,10,0"/>
         <Setter Property="HeightRequest" Value="62"/>
+        <Setter Property="AllowClear" Value="True"/>
     </Style>
 
     <!--<Style TargetType="Entry" x:Key="Txt">
