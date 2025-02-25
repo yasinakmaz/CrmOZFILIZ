@@ -102,4 +102,10 @@ public partial class KayitEklePage : ContentPage
         else
         { DtpPck.IsVisible = false; }
     }
+
+    private void BtnClear_Clicked(object sender, EventArgs e)
+    {
+        DataSeeder.SeedData(10);
+        DisplayAlert("Başarılı", "10 rastgele kayıt eklendi!", "Tamam");
+    }
 }

@@ -16,3 +16,8 @@ global using System.ComponentModel;
 global using Crm.Model.Dto;
 global using System.Collections.ObjectModel;
 global using Crm.ViewModels;
+global using Bogus;
+global using Crm.RandomData;
+global using System.Windows.Input;
+global using MvvmHelpers;
+global using System.Runtime.CompilerServices;

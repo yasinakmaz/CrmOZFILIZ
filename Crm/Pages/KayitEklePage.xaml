@@ -170,7 +170,7 @@
                 <!-- Kontrol -->
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
-                        <Button Grid.Column="0" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
+                        <Button Grid.Column="0" x:Name="BtnClear" Clicked="BtnClear_Clicked" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
                         <Button Grid.Column="1" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kaydı Ekle" ImageSource="phone.png"></Button>
                     </Grid>
                 </Border>

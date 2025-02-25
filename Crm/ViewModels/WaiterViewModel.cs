@@ -1,10 +1,10 @@
-﻿using System.Windows.Input;
-
-namespace Crm.ViewModels
+﻿namespace Crm.ViewModels
 {
     public class WaiterViewModel : INotifyPropertyChanged
     {
+        // Grup isimlendirmesini dilediğiniz gibi değiştirebilirsiniz
         public ObservableCollection<WaiterGroup> GroupedItems { get; set; } = new();
+
         private readonly Guid _loginUserGuid = SqlServices.LoginUserGuid;
 
         public WaiterViewModel()
@@ -35,28 +35,38 @@ namespace Crm.ViewModels
             }
 
             GroupedItems.Clear();
-            GroupedItems.Add(pastAppointments);
-            GroupedItems.Add(upcomingAppointments);
-            GroupedItems.Add(assignedRecords);
-            GroupedItems.Add(myRecords);
+            if (pastAppointments.Count > 0)
+                GroupedItems.Add(pastAppointments);
+            if (upcomingAppointments.Count > 0)
+                GroupedItems.Add(upcomingAppointments);
+            if (assignedRecords.Count > 0)
+                GroupedItems.Add(assignedRecords);
+            if (myRecords.Count > 0)
+                GroupedItems.Add(myRecords);
 
             OnPropertyChanged(nameof(GroupedItems));
         }
-
-        public void ToggleGroup(WaiterGroup group)
+        public ICommand AddOrRemoveGroupDataCommand => new Command<WaiterGroup>((item) =>
         {
-            group.IsExpanded = !group.IsExpanded;
-            OnPropertyChanged(nameof(GroupedItems));
-        }
+            if (item.GroupIcon == "https://img.icons8.com/fluency/96/expand-arrow.png")
+            {
+                item.Clear();
+                item.GroupIcon = "https://img.icons8.com/fluency/96/collapse-arrow.png";
+            }
+            else
+            {
+                using var context = new AppDbContext(SqlServices.SqlConnectionString);
+                var recordsTobeAdded = context.TBLRECORDLIST
+                    .Where(f => f.BusinessAuthNameAndSurname.ToLower().StartsWith(item.GroupTitle.ToLower()))
+                    .ToList();
+
+                item.AddRange(recordsTobeAdded);
+                item.GroupIcon = "https://img.icons8.com/fluency/96/expand-arrow.png";
+            }
+        });
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        public ICommand ToggleGroupCommand => new Command<WaiterGroup>((group) =>
-        {
-            group.IsExpanded = !group.IsExpanded;
-            OnPropertyChanged(nameof(GroupedItems));
-        });
     }
 }

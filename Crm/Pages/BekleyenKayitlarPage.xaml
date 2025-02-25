@@ -5,37 +5,37 @@
              xmlns:services="clr-namespace:Crm.Services"
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:vm="clr-namespace:Crm.ViewModels"
+             xmlns:models="clr-namespace:Crm.Model"
              Style="{StaticResource StlPage}"
              Title="Bekleyen Kayıtlar">
 
+    <ContentPage.BindingContext>
+        <vm:WaiterViewModel/>
+    </ContentPage.BindingContext>
+    
     <Grid x:Name="GrdShow">
-        <CollectionView ItemsSource="{Binding GroupedItems}" IsGrouped="True">
+        <CollectionView VerticalOptions="FillAndExpand" IsGrouped="True" ItemsSource="{Binding Employees}">
             <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Frame BackgroundColor="LightGray" Padding="10" CornerRadius="5">
-                            <Grid ColumnDefinitions="*,Auto">
-                                <Label Text="{Binding GroupName}" FontSize="16" FontAttributes="Bold" VerticalOptions="Center" />
-                                <ImageButton Source="{Binding ArrowIcon}" WidthRequest="24" HeightRequest="24"
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:WaiterViewModel}}, Path=ToggleGroupCommand}"
-                                     CommandParameter="{Binding}" Grid.Column="1"/>
-                            </Grid>
-                        </Frame>
-                    </Grid>
+                <DataTemplate x:DataType="models:TblWaiterList">
+                    <HorizontalStackLayout Spacing="5">
+                        <Image Source="{Binding GroupIcon}" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" />
+                        <Label Text="{Binding GroupTitle}" FontSize="28" />
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModles:EmployeeListViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
-
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" HasShadow="True" IsVisible="{Binding IsExpanded, Source={RelativeSource AncestorType={x:Type vm:WaiterGroup}}}">
-                        <StackLayout>
-                            <Label Text="{Binding BusinessAuthNameAndSurname}" FontSize="14" FontAttributes="Bold"/>
-                            <Label Text="{Binding BusinessProblem}" FontSize="12" TextColor="Gray"/>
-                        </StackLayout>
-                    </Frame>
+                <DataTemplate x:DataType="models:TblWaiterList">
+                    <VerticalStackLayout>
+                        <Frame Padding="10" >
+                            <Label VerticalTextAlignment="Center" Text="{Binding BusinessAuthNameAndSurname}" FontSize="18" />
+                        </Frame>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-    
+
 </ContentPage>
