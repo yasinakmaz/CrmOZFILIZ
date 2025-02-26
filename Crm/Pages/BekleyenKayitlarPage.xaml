@@ -14,14 +14,14 @@
     </ContentPage.BindingContext>
     
     <Grid x:Name="GrdShow">
-        <CollectionView VerticalOptions="FillAndExpand" IsGrouped="True" ItemsSource="{Binding Employees}">
+        <CollectionView VerticalOptions="FillAndExpand" IsGrouped="True" ItemsSource="{Binding GroupedItems}">
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="models:TblWaiterList">
                     <HorizontalStackLayout Spacing="5">
                         <Image Source="{Binding GroupIcon}" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" />
                         <Label Text="{Binding GroupTitle}" FontSize="28" />
                         <HorizontalStackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModles:EmployeeListViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
+                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:WaiterViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding}" />
                         </HorizontalStackLayout.GestureRecognizers>
                     </HorizontalStackLayout>
                 </DataTemplate>

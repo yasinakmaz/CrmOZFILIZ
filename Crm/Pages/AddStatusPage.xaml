@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Crm.Pages.AddStatusPage"
+             Style="{StaticResource StlPage}"
+             xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             Title="Durum Kaydet">
+
+    <Grid x:Name="GrdShow">
+        <ScrollView>
+            <Grid>
+                <StackLayout Orientation="Vertical" Spacing="10" Margin="10">
+                    <!-- Durum Image FolderPicker Border -->
+                    <Border Style="{StaticResource BrdStl}">
+                        <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
+                            <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Durum Seçmek İçin Tıklayınız ↓"></Label>
+                            <Button CornerRadius="10" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Durum Seçiniz" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Search}}"></Button>
+                        </Grid>
+                    </Border>
+                    <!-- Durum Image FolderPicker Border -->
+                    <Border Style="{StaticResource BrdStl}">
+                        <Grid RowDefinitions="20,*" RowSpacing="10" Margin="10">
+                            <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Resmi Seçiniz ↓ !*"></Label>
+                            <Button Clicked="BtnImagePicker_Clicked" CornerRadius="10" x:Name="BtnImagePicker" Grid.Row="1" Style="{StaticResource BtnStl}" Text="Resim Seçiniz" ImageSource="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Image}}"></Button>
+                        </Grid>
+                    </Border>
+                    <!-- Durum ImageShow Border -->
+                    <Border Style="{StaticResource BrdStl}" HeightRequest="200">
+                        <Border Style="{StaticResource BrdStl}" HorizontalOptions="Center" HeightRequest="200">
+                            <Image x:Name="ImgImage" Aspect="AspectFit"></Image>
+                        </Border>
+                    </Border>
+                    <!--Durum Adı-->
+                    <Border Style="{StaticResource BrdStl}">
+                        <Grid RowDefinitions="20,*" RowSpacing="5" Margin="10">
+                            <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Durum Adı Giriniz!* ↓"></Label>
+                            <md:TextField x:Name="TxtStatusName" Style="{StaticResource Txt}" Title="Durum Adı Giriniz!" Grid.Row="1" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Timelapse}}"/>
+                        </Grid>
+                    </Border>
+                    <!--Durum Title Adı-->
+                    <Border Style="{StaticResource BrdStl}">
+                        <Grid RowDefinitions="20,*" RowSpacing="5" Margin="10">
+                            <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Durum Başlığı Giriniz!* ↓ (Listede Gözükecek)"></Label>
+                            <md:TextField x:Name="TxtStatusTitle" Style="{StaticResource Txt}" Title="Durum Başlığı Giriniz!" Grid.Row="1" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static m:MaterialSharp.Short_text}}"/>
+                        </Grid>
+                    </Border>
+                    <!--Durum Color-->
+                    <Border Style="{StaticResource BrdStl}" HeightRequest="310">
+                        <StackLayout Margin="10" Spacing="5">
+                            <Slider x:Name="SldGreen" ValueChanged="Color_ValueChanged" ThumbColor="Green" MinimumTrackColor="Green" MaximumTrackColor="Green" Minimum="0" Maximum="255"/>
+                            <Label x:Name="LblGreen" Style="{StaticResource LblStl}" Text="0"/>
+                            <Slider x:Name="SldBlue" ValueChanged="Color_ValueChanged" ThumbColor="Blue" MinimumTrackColor="Blue" MaximumTrackColor="Blue" Minimum="0" Maximum="255"/>
+                            <Label x:Name="LblBlue" Style="{StaticResource LblStl}" Text="0"/>
+                            <Slider x:Name="SldRed" ValueChanged="Color_ValueChanged" ThumbColor="Red" MinimumTrackColor="Red" MaximumTrackColor="Red" Minimum="0" Maximum="255"/>
+                            <Label x:Name="LblRed" Style="{StaticResource LblStl}" Text="0"/>
+                            <Grid ColumnDefinitions="120,*">
+                                <Border x:Name="BrdShow" Grid.Column="0" WidthRequest="100" HeightRequest="100" StrokeThickness="3" StrokeShape="RoundRectangle 50" HorizontalOptions="Start" Stroke="White"/>
+                                <Label x:Name="LblHexColor" Grid.Column="0" Style="{StaticResource LblStl}" Text="Renk Kodu :" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Grid Grid.Column="2" RowDefinitions="*,*" RowSpacing="5">
+                                    <Button Grid.Row="0" CornerRadius="5" x:Name="BtnClear" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
+                                    <Button Grid.Row="1" CornerRadius="5" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Durum Ekle" ImageSource="siren.png"></Button>
+                                </Grid>
+                            </Grid>
+                        </StackLayout>
+                    </Border>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+        <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="White" x:Name="ActLoad"/>
+    </Grid>
+    
+</ContentPage>

@@ -54,6 +54,12 @@
                   ContentTemplate="{DataTemplate local:BekleyenKayitlarPage}"
                   Route="IptalEdilenKayitlarPage"/>
 
+    <ShellContent Title="Durum Kaydet"
+                  Icon="siren.png"
+                  x:Name="AddStatusPage"
+                  ContentTemplate="{DataTemplate local:AddStatusPage}"
+                  Route="AddStatusPage"/>
+
     <ShellContent Title="Program Kaydet"
                   Icon="imac.png"
                   x:Name="AddRecordProgramPage"
