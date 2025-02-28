@@ -2,92 +2,113 @@
 {
     public class WaiterListViewModel : BindableObject
     {
-        private ObservableCollection<StatusGroup> _groupedWaiters;
-        public ObservableCollection<StatusGroup> GroupedWaiters
+        private ObservableCollection<GroupModel> _groups;
+        public ObservableCollection<GroupModel> Groups
         {
-            get => _groupedWaiters;
+            get => _groups;
             set
             {
-                _groupedWaiters = value;
+                _groups = value;
                 OnPropertyChanged();
             }
         }
 
-        private ICommand _toggleGroupCommand;
-        public ICommand ToggleGroupCommand => _toggleGroupCommand ??= new Command<StatusGroup>(ToggleGroup);
-
         private readonly AppDbContext _dbContext;
+
+        public WaiterListViewModel()
+        {
+            Groups = new ObservableCollection<GroupModel>();
+        }
 
         public WaiterListViewModel(AppDbContext dbContext)
         {
             _dbContext = dbContext;
-            GroupedWaiters = new ObservableCollection<StatusGroup>();
-            LoadGroupedDataAsync();
+            Groups = new ObservableCollection<GroupModel>();
         }
 
-        private void ToggleGroup(StatusGroup group)
+        public async Task LoadDataAsync()
         {
-            if (group == null) return;
+            if (_dbContext == null)
+            {
+                System.Diagnostics.Debug.WriteLine("DbContext null - veri yüklenemedi");
+                return;
+            }
 
-            group.IsExpanded = !group.IsExpanded;
-
-            // Force refresh the CollectionView to update item visibility
-            var temp = new ObservableCollection<StatusGroup>(GroupedWaiters);
-            GroupedWaiters = null;
-            GroupedWaiters = temp;
-        }
-
-        public async void LoadGroupedDataAsync()
-        {
             try
             {
-                await LoadGroupedData();
+                System.Diagnostics.Debug.WriteLine("Veri yükleniyor...");
+
+                Groups.Clear();
+
+                var statuses = await _dbContext.TBLSTATUS.OrderBy(s => s.Order).ToListAsync();
+                var waiters = await _dbContext.TBLRECORDLIST.ToListAsync();
+
+                System.Diagnostics.Debug.WriteLine($"Yüklenen durum sayısı: {statuses.Count}, Bekleyen kayıt sayısı: {waiters.Count}");
+
+                foreach (var status in statuses)
+                {
+                    var items = waiters.Where(w => w.RecordStatusInd == status.IND).ToList();
+                    if (items.Any())
+                    {
+                        var group = new GroupModel(status);
+                        foreach (var item in items)
+                        {
+                            group.Items.Add(item);
+                        }
+                        Groups.Add(group);
+                        System.Diagnostics.Debug.WriteLine($"Grup eklendi: {status.TitleText}, Öğe sayısı: {items.Count}");
+                    }
+                }
+                OnPropertyChanged(nameof(Groups));
             }
             catch (Exception ex)
             {
-                // Hata yönetimi burada
-                Console.WriteLine($"Veri yükleme hatası: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Veri yükleme hatası: {ex.Message}\n{ex.StackTrace}");
             }
-        }
-
-        public async Task LoadGroupedData()
-        {
-            // Get all statuses ordered by Order
-            var statuses = await _dbContext.TBLSTATUS
-                .OrderBy(s => s.Order)
-                .ToListAsync();
-
-            // Get all waiter list items
-            var waiters = await _dbContext.TBLRECORDLIST.ToListAsync();
-
-            // Create groups
-            var groups = new ObservableCollection<StatusGroup>();
-
-            foreach (var status in statuses)
-            {
-                var itemsInStatus = waiters
-                    .Where(w => w.RecordStatusInd == status.IND)
-                    .ToList();
-
-                if (itemsInStatus.Any())
-                {
-                    groups.Add(new StatusGroup(status, itemsInStatus));
-                }
-            }
-
-            GroupedWaiters = groups;
         }
     }
 
-    // Group class for CollectionView grouping
-    public class StatusGroup : ObservableCollection<TblWaiterList>
+    public class GroupModel : BindableObject
     {
         public TblStatus Status { get; }
-        public bool IsExpanded { get; set; } = true;
 
-        public StatusGroup(TblStatus status, IEnumerable<TblWaiterList> waiters) : base(waiters)
+        private ObservableCollection<TblWaiterList> _items = new ObservableCollection<TblWaiterList>();
+        public ObservableCollection<TblWaiterList> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isExpanded = true;
+        public bool IsExpanded
+        {
+            get => _isExpanded;
+            set
+            {
+                if (_isExpanded != value)
+                {
+                    _isExpanded = value;
+                    OnPropertyChanged();
+                    System.Diagnostics.Debug.WriteLine($"Grup genişletme/daraltma: {Status?.TitleText}, Değer: {_isExpanded}");
+                }
+            }
+        }
+
+        public ICommand ToggleCommand { get; }
+
+        public GroupModel(TblStatus status)
         {
             Status = status;
+            ToggleCommand = new Command(Toggle);
+        }
+
+        private void Toggle()
+        {
+            IsExpanded = !IsExpanded;
         }
     }
 }

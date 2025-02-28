@@ -1,35 +1,45 @@
 namespace Crm.Pages;
-
 public partial class BekleyenKayitlarPage : ContentPage
 {
+    private WaiterListViewModel _viewModel;
+
     public BekleyenKayitlarPage()
-	{
-		InitializeComponent();
-        BindingContext = App.Current.Handler.MauiContext.Services.GetService<WaiterListViewModel>();
+    {
+        InitializeComponent();
+        _viewModel = new WaiterListViewModel(new AppDbContext(SqlServices.SqlConnectionString));
+        BindingContext = _viewModel;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        AuthorityControl();
+        await AuthorityControl();
     }
-    private async void AuthorityControl()
+
+    private async Task AuthorityControl()
     {
-        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        try
         {
-            bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1004);
-            if (giris == true)
+            using (var context = new AppDbContext(SqlServices.SqlConnectionString))
             {
-                if (BindingContext is WaiterListViewModel viewModel)
+                bool giris = await context.TBLPERSONAUTHORITY
+                    .Where(a => a.PersonIND == SqlServices.LoginUserGuid)
+                    .AnyAsync(a => a.PersonAuthorityID == 1004);
+
+                if (giris)
                 {
-                    await viewModel.LoadGroupedData();
+                    await _viewModel.LoadDataAsync();
+                }
+                else
+                {
+                    GrdShow.IsEnabled = false;
+                    await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
                 }
             }
-            else
-            {
-                GrdShow.IsEnabled = false;
-                await Shell.Current.DisplayAlert("Sistem", "Giriþ Ýzniniz Bulunmamaktadýr", "Tamam");
-            }
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Hata", $"Sistem hatasý: {ex.Message}", "Tamam");
         }
     }
 }
