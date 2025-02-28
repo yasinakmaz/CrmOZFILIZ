@@ -7,6 +7,7 @@
         public DbSet<TblPerson> TBLPERSON { get; set; }
         public DbSet<TblPersonAuthority> TBLPERSONAUTHORITY { get; set; }
         public DbSet<TblWaiterList> TBLRECORDLIST { get; set; }
+        public DbSet<TblStatus> TBLSTATUS { get; set; }
 
         private readonly string _connectionString;
 

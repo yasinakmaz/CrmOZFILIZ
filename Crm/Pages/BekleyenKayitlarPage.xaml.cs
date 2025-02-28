@@ -2,11 +2,10 @@ namespace Crm.Pages;
 
 public partial class BekleyenKayitlarPage : ContentPage
 {
-    private readonly WaiterViewModel _viewModel = new();
     public BekleyenKayitlarPage()
 	{
 		InitializeComponent();
-        BindingContext = _viewModel;
+        BindingContext = App.Current.Handler.MauiContext.Services.GetService<WaiterListViewModel>();
     }
 
     protected override async void OnAppearing()
@@ -21,6 +20,10 @@ public partial class BekleyenKayitlarPage : ContentPage
             bool giris = await context.TBLPERSONAUTHORITY.Where(a => a.PersonIND == SqlServices.LoginUserGuid).AnyAsync(a => a.PersonAuthorityID == 1004);
             if (giris == true)
             {
+                if (BindingContext is WaiterListViewModel viewModel)
+                {
+                    await viewModel.LoadGroupedData();
+                }
             }
             else
             {

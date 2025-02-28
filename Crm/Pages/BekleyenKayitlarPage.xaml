@@ -5,37 +5,84 @@
              xmlns:services="clr-namespace:Crm.Services"
              xmlns:md="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:vm="clr-namespace:Crm.ViewModels"
+             xmlns:converters="clr-namespace:Crm.Converters"
              xmlns:models="clr-namespace:Crm.Model"
              Style="{StaticResource StlPage}"
              Title="Bekleyen Kayıtlar">
 
-    <ContentPage.BindingContext>
-        <vm:WaiterViewModel/>
-    </ContentPage.BindingContext>
-    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ExpandCollapseIconConverter x:Key="ExpandCollapseIconConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid x:Name="GrdShow">
-        <CollectionView VerticalOptions="FillAndExpand" IsGrouped="True" ItemsSource="{Binding GroupedItems}">
-            <CollectionView.GroupHeaderTemplate>
-                <DataTemplate x:DataType="models:TblWaiterList">
-                    <HorizontalStackLayout Spacing="5">
-                        <Image Source="{Binding GroupIcon}" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" />
-                        <Label Text="{Binding GroupTitle}" FontSize="28" />
-                        <HorizontalStackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:WaiterViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding}" />
-                        </HorizontalStackLayout.GestureRecognizers>
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.GroupHeaderTemplate>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:TblWaiterList">
-                    <VerticalStackLayout>
-                        <Frame Padding="10" >
-                            <Label VerticalTextAlignment="Center" Text="{Binding BusinessAuthNameAndSurname}" FontSize="18" />
-                        </Frame>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Grid RowDefinitions="Auto,*">
+            <Label Text="Bekleyen Kayıtlar" FontSize="24" FontAttributes="Bold" Margin="10" />
+
+            <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding GroupedWaiters}"
+                        IsGrouped="True">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+
+                <!-- Group Header Template -->
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="vm:StatusGroup">
+                        <Grid Padding="10">
+                            <Frame BackgroundColor="{Binding Status.ColorCode}"
+                               CornerRadius="10"
+                               Padding="10">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <!-- Status Image -->
+                                    <Image Grid.Column="0"
+                                       Source="{Binding Status.StatusImageSource}"
+                                       HeightRequest="40"
+                                       WidthRequest="40"
+                                       Margin="0,0,10,0"/>
+
+                                    <!-- Status Title -->
+                                    <Label Grid.Column="1"
+                                       Text="{Binding Status.TitleText}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       VerticalOptions="Center"/>
+
+                                    <!-- Expand/Collapse Button -->
+                                    <ImageButton Grid.Column="2"
+                                             Source="{Binding IsExpanded, Converter={StaticResource ExpandCollapseIconConverter}}"
+                                             HeightRequest="30"
+                                             WidthRequest="30"
+                                             BackgroundColor="Transparent"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:WaiterListViewModel}}, Path=ToggleGroupCommand}"
+                                             CommandParameter="{Binding}"/>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <!-- Item Template -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:TblWaiterList">
+                        <Grid Padding="5" IsVisible="{Binding Source={RelativeSource AncestorType={x:Type vm:StatusGroup}}, Path=IsExpanded}">
+                            <Frame Padding="10" Margin="20,0,0,0">
+                                <StackLayout>
+                                    <Label Text="{Binding BusinessAuthNameAndSurname}" FontAttributes="Bold" />
+                                    <Label Text="{Binding BusinessPhoneNumber}" />
+                                    <Label Text="{Binding BusinessProblem}" LineBreakMode="WordWrap" />
+                                    <Label Text="{Binding AddRecordDate, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
+                                       FontSize="12" 
+                                       TextColor="Gray"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </Grid>
 
 </ContentPage>

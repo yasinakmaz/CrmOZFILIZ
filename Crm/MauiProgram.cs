@@ -31,6 +31,9 @@ namespace Crm
             builder.Services.AddTransient<AddUserAuthorityPage>();
             builder.Services.AddTransient<AddRecordProgramPage>();
             builder.Services.AddTransient<MyProfilePage>();
+            builder.Services.AddSingleton(new AppDbContext(SqlServices.SqlConnectionString));
+            builder.Services.AddTransient<WaiterListViewModel>();
+            builder.Services.AddTransient<BekleyenKayitlarPage>();
 
             return builder.Build();
         }

@@ -17,7 +17,7 @@
                 return null;
             }
         }
-        public int? Order { get; set; }
+        public string? Order { get; set; }
         public string? StatusName { get; set; }
         public string? ColorCode { get; set; }
     }

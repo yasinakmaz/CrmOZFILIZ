@@ -2,7 +2,7 @@
 
 public partial class KayitEklePage : ContentPage
 {
-    string sqlservices;
+    string? sqlservices;
     public KayitEklePage()
     {
         InitializeComponent();
@@ -49,6 +49,7 @@ public partial class KayitEklePage : ContentPage
             List<TblProgram> programs;
             List<TblAgreement> agreements;
             List<PersonDto> person;
+            List<TblStatus> status;
             await using (var programContext = new AppDbContext(sqlservices))
             {
                 programs = await programContext.TBLPROGRAM.OrderBy(p => p.ProgramName).ToListAsync();
@@ -61,10 +62,15 @@ public partial class KayitEklePage : ContentPage
             {
                 person = await personcontext.TBLPERSON.OrderBy(a => a.UserName).Select(u => new PersonDto { FullName = u.FirstName + " " + u.LastName }).ToListAsync();
             }
+            await using (var statuscontext = new AppDbContext(sqlservices))
+            {
+                status = await statuscontext.TBLSTATUS.OrderBy(a => a.TitleText).ToListAsync();
+            }
 
             ProgramList.ItemsSource = programs ?? new List<TblProgram>();
             AgreementList.ItemsSource = agreements ?? new List<TblAgreement>();
             PckPersons.ItemsSource = person ?? new List<PersonDto>();
+            StatusList.ItemsSource = status ?? new List<TblStatus>();
         }
         catch (SqlException ex)
         {
