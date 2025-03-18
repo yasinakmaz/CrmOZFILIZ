@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Crm
+﻿namespace Crm
 {
     public partial class AppShell : Shell
     {
@@ -25,7 +23,7 @@ namespace Crm
 
             try
             {
-                    var authorityPages = new Dictionary<int, object>
+                var authorityPages = new Dictionary<int, object>
                     {
                         { 1001, KayitEklePage },
                         { 1004, BekleyenKayitlarPage },
@@ -36,12 +34,12 @@ namespace Crm
                         { 1009, AddPersonPages}
                     };
 
-                    var context = new AppDbContext(SqlServices.SqlConnectionString);
+                var context = new AppDbContext(SqlServices.SqlConnectionString);
 
-                    var userAuthorities = await context.TBLPERSONAUTHORITY
-                    .Where(a => a.PersonIND == SqlServices.LoginUserGuid && authorityPages.Keys.Contains(a.PersonAuthorityID))
-                    .Select(a => a.PersonAuthorityID)
-                    .ToListAsync();
+                var userAuthorities = await context.TBLPERSONAUTHORITY
+                .Where(a => a.PersonIND == SqlServices.LoginUserGuid && authorityPages.Keys.Contains(a.PersonAuthorityID))
+                .Select(a => a.PersonAuthorityID)
+                .ToListAsync();
 
                 foreach (var id in authorityPages.Keys)
                 {

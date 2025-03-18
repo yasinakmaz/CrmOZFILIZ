@@ -137,7 +137,7 @@
                 <Border Style="{StaticResource BrdStl}" HeightRequest="200">
                     <Grid RowDefinitions="20,*" Margin="10,5,0,0">
                         <Label Grid.Row="0" Style="{StaticResource LblStl}" Text="Anlaşma Durumu Seçiniz ↓ !*"></Label>
-                        <CollectionView Grid.Row="1" x:Name="AgreementList" HorizontalScrollBarVisibility="Never">
+                        <CollectionView Grid.Row="1" x:Name="AgreementList" HorizontalScrollBarVisibility="Never" SelectionChanged="AgreementList_SelectionChanged">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="2"/>
                             </CollectionView.ItemsLayout>
@@ -193,7 +193,7 @@
                 <Border Style="{StaticResource BrdStl}" HeightRequest="60">
                     <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="5">
                         <Button Grid.Column="0" x:Name="BtnClear" Clicked="BtnClear_Clicked" Style="{StaticResource BtnStl}" Text="Temizle" ImageSource="clear.png"></Button>
-                        <Button Grid.Column="1" x:Name="BtnAdd" Style="{StaticResource BtnStl}" Text="Kaydı Ekle" ImageSource="phone.png"></Button>
+                        <Button Grid.Column="1" x:Name="BtnAdd" Clicked="BtnAdd_Clicked" Style="{StaticResource BtnStl}" Text="Kaydı Ekle" ImageSource="phone.png"></Button>
                     </Grid>
                 </Border>
 

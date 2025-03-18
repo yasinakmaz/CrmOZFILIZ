@@ -1,4 +1,4 @@
-    namespace Crm.Pages;
+namespace Crm.Pages;
 
 public partial class AddStatusPage : ContentPage
 {
@@ -6,9 +6,9 @@ public partial class AddStatusPage : ContentPage
     private bool _addperson;
     private bool addImage;
     public AddStatusPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
     private void Isbussy(bool ýsbusy)
     {
         ActLoad.IsRunning = ýsbusy;
@@ -83,7 +83,7 @@ public partial class AddStatusPage : ContentPage
         {
             Isbussy(true);
 
-            if(TxtStatusName.Text != string.Empty || TxtStatusTitle.Text != string.Empty || addImage == false)
+            if (TxtStatusName.Text != string.Empty || TxtStatusTitle.Text != string.Empty || addImage == false)
             {
                 var newStatus = new TblStatus
                 {

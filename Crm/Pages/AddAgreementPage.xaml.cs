@@ -2,9 +2,9 @@ namespace Crm.Pages;
 
 public partial class AddAgreementPage : ContentPage
 {
-	public AddAgreementPage()
-	{
-		InitializeComponent();
+    public AddAgreementPage()
+    {
+        InitializeComponent();
         AuthorityControl();
         SqlServices.ProgramSelectedItemChanged += OnChange;
     }
@@ -90,7 +90,7 @@ public partial class AddAgreementPage : ContentPage
     {
         try
         {
-            if(change == false)
+            if (change == false)
             {
                 Isbussy(true);
                 await SqlServices.InitializeAsync();
@@ -139,7 +139,7 @@ public partial class AddAgreementPage : ContentPage
         }
         catch (SqlException ex)
         {
-            await Shell.Current.DisplayAlert("Sistem", $"Hata : {ex.Message}","Tamam");
+            await Shell.Current.DisplayAlert("Sistem", $"Hata : {ex.Message}", "Tamam");
             await Clipboard.SetTextAsync(ex.Message);
         }
         finally

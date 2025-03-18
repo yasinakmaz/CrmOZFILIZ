@@ -3,8 +3,8 @@ namespace Crm.Pages;
 public partial class AddRecordProgramPage : ContentPage
 {
     public AddRecordProgramPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         AuthorityControl();
         SqlServices.ProgramSelectedItemChanged += OnChange;
     }
@@ -39,7 +39,7 @@ public partial class AddRecordProgramPage : ContentPage
                 program = await context.TBLPROGRAM.Where(p => p.IND == SqlServices.ProgramUpdateSelectedItem).FirstOrDefaultAsync();
             }
 
-            if(program != null)
+            if (program != null)
             {
                 TxtProgramAdi.Text = program.ProgramName;
                 TxtProgramCategory.Text = program.ProgramCategory;
@@ -56,12 +56,12 @@ public partial class AddRecordProgramPage : ContentPage
     }
 
     private void ClearAll()
-	{
-		TxtProgramAdi.Text = string.Empty;
+    {
+        TxtProgramAdi.Text = string.Empty;
         TxtProgramCategory.Text = string.Empty;
-		ImgImage.Source = null;
+        ImgImage.Source = null;
         change = false;
-	}
+    }
 
     private void Isbussy(bool ýsbusy)
     {
@@ -76,14 +76,14 @@ public partial class AddRecordProgramPage : ContentPage
 
     private void BtnClear_Clicked(object sender, EventArgs e)
     {
-		ClearAll();
+        ClearAll();
     }
 
     private async void BtnAdd_Clicked(object sender, EventArgs e)
     {
         try
         {
-            if(change == false)
+            if (change == false)
             {
                 Isbussy(true);
                 await SqlServices.InitializeAsync();
@@ -119,7 +119,7 @@ public partial class AddRecordProgramPage : ContentPage
                 {
                     var mevcutprogram = await context.TBLPROGRAM.SingleOrDefaultAsync(p => p.IND == SqlServices.ProgramUpdateSelectedItem);
 
-                    if(mevcutprogram != null)
+                    if (mevcutprogram != null)
                     {
                         mevcutprogram.ProgramName = TxtProgramAdi.Text;
                         mevcutprogram.ProgramCategory = TxtProgramCategory.Text;

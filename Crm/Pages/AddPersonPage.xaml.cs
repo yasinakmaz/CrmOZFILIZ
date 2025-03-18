@@ -5,8 +5,8 @@ public partial class AddPersonPage : ContentPage
     private byte[] _addpersonImage;
     private bool _addperson;
     public AddPersonPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         AuthorityControl();
         TxtPassword.IsPassword = true;
     }

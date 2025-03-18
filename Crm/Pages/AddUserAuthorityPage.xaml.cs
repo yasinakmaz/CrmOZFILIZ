@@ -4,10 +4,10 @@ namespace Crm.Pages;
 
 public partial class AddUserAuthorityPage : ContentPage
 {
-	public AddUserAuthorityPage()
-	{
-		InitializeComponent();
-	}
+    public AddUserAuthorityPage()
+    {
+        InitializeComponent();
+    }
 
     private async void AuthorityControl()
     {

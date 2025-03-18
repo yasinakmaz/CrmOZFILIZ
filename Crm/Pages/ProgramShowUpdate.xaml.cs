@@ -5,8 +5,8 @@ public partial class ProgramShowUpdate : Popup
     private string sqlservices;
     private TblProgram selectedProgram;
     public ProgramShowUpdate()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         OnLoad();
     }
 
@@ -75,7 +75,7 @@ public partial class ProgramShowUpdate : Popup
 
     private void LstView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        if(e.SelectedItem is TblProgram program)
+        if (e.SelectedItem is TblProgram program)
         {
             selectedProgram = program;
         }

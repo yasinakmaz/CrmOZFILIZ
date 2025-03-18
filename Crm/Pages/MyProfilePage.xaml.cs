@@ -2,18 +2,18 @@ namespace Crm.Pages;
 
 public partial class MyProfilePage : ContentPage
 {
-	public MyProfilePage()
-	{
-		InitializeComponent();
-	}
+    public MyProfilePage()
+    {
+        InitializeComponent();
+    }
     private byte[]? personýmage;
-    private bool? ImageChange,UserNameChange,FirstNameChange,LastNameChange,EmailChange,PhoneNumberChange,PasswordChange;
+    private bool? ImageChange, UserNameChange, FirstNameChange, LastNameChange, EmailChange, PhoneNumberChange, PasswordChange;
 
-    private string? UserName = string.Empty,FirstName = string.Empty, LastName = string.Empty, Email = string.Empty, PhoneNumber = string.Empty, Password = string.Empty;
+    private string? UserName = string.Empty, FirstName = string.Empty, LastName = string.Empty, Email = string.Empty, PhoneNumber = string.Empty, Password = string.Empty;
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-		await PushLoad();
+        await PushLoad();
         await Getir();
     }
 
@@ -42,26 +42,26 @@ public partial class MyProfilePage : ContentPage
     }
 
     private async Task PushLoad()
-	{
-		using (var context = new AppDbContext(SqlServices.SqlConnectionString))
-		{
-			var user = await context.TBLPERSON.FindAsync(SqlServices.LoginUserGuid);
-			if(user != null)
-			{
-				ImgImage.Source = PublicServices.profileImage;
-				UserName = user.UserName;
-				FirstName = user.FirstName;
-				LastName = user.LastName;
-				Email = user.Email;
-				PhoneNumber = user.PhoneNumber;
-				Password = user.Password;
-			}
-			else
-			{
-				await Shell.Current.DisplayAlert("Sistem", "Kullanýcý Bulunamadý", "Tamam");
-			}
-		}
-	}
+    {
+        using (var context = new AppDbContext(SqlServices.SqlConnectionString))
+        {
+            var user = await context.TBLPERSON.FindAsync(SqlServices.LoginUserGuid);
+            if (user != null)
+            {
+                ImgImage.Source = PublicServices.profileImage;
+                UserName = user.UserName;
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Email = user.Email;
+                PhoneNumber = user.PhoneNumber;
+                Password = user.Password;
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Sistem", "Kullanýcý Bulunamadý", "Tamam");
+            }
+        }
+    }
 
     private async Task Getir()
     {
@@ -188,7 +188,7 @@ public partial class MyProfilePage : ContentPage
     }
     private void TxtUserName_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if(UserName != TxtUserName.Text)
+        if (UserName != TxtUserName.Text)
         {
             UserNameChange = true;
         }

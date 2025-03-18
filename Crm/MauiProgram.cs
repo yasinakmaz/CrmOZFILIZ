@@ -21,7 +21,7 @@ namespace Crm
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<KayitEklePage>();

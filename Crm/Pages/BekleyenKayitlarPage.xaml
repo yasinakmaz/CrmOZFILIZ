@@ -26,50 +26,36 @@
     </ContentPage.Resources>
 
     <Grid x:Name="GrdShow">
-        <Grid RowDefinitions="Auto,*">
-            <Label Text="Bekleyen Kayıtlar" FontSize="24" FontAttributes="Bold" Margin="10" />
+        <Grid Margin="10">
 
             <CollectionView Grid.Row="1" ItemsSource="{Binding Groups}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Spacing="0">
                             <!-- Header - Grup başlığı -->
-                            <Frame Style="{StaticResource HeaderStyle}" 
-                           BackgroundColor="{Binding Status.ColorCode}">
+                            <Border Style="{StaticResource HeaderStyle}" BackgroundColor="{Binding Status.ColorCode}">
                                 <Grid ColumnDefinitions="Auto,*,Auto">
-                                    <Image Source="{Binding Status.StatusImageSource}"
-                                   HeightRequest="40" WidthRequest="40" 
-                                   Grid.Column="0" />
+                                    <Image Source="{Binding Status.StatusImageSource}" HeightRequest="40" WidthRequest="40" Grid.Column="0" />
 
-                                    <Label Text="{Binding Status.TitleText}" 
-                                   Grid.Column="1"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="16"
-                                   VerticalOptions="Center" />
+                                    <Label Text="{Binding Status.TitleText}" Grid.Column="1" TextColor="White" FontAttributes="Bold" FontSize="16" VerticalOptions="Center" />
 
-                                    <ImageButton Source="{Binding IsExpanded, Converter={StaticResource expandCollapseIcon}}"
-                                         BackgroundColor="Transparent"
-                                         Grid.Column="2"
-                                         Command="{Binding ToggleCommand}"
-                                         HeightRequest="30" WidthRequest="30" />
+                                    <ImageButton Source="{Binding IsExpanded, Converter={StaticResource expandCollapseIcon}}" BackgroundColor="Transparent" Grid.Column="2" Command="{Binding ToggleCommand}" HeightRequest="30" WidthRequest="30" />
                                 </Grid>
-                            </Frame>
+                            </Border>
 
                             <!-- Content - Grup içeriği -->
-                            <StackLayout BindableLayout.ItemsSource="{Binding Items}" 
-                                 IsVisible="{Binding IsExpanded}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Items}" IsVisible="{Binding IsExpanded}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame Margin="20,5,5,5" Padding="10">
+                                        <Border BackgroundColor="{StaticResource FourtyDark}" Padding="10">
                                             <StackLayout>
-                                                <Label Text="{Binding BusinessAuthNameAndSurname}" FontAttributes="Bold" />
-                                                <Label Text="{Binding BusinessPhoneNumber}" />
-                                                <Label Text="{Binding BusinessProblem}" LineBreakMode="WordWrap" />
-                                                <Label Text="{Binding AddRecordDate, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
-                                               FontSize="12" TextColor="Gray" />
+                                                <Label Text="{Binding BusinessAuthNameAndSurname}" FontAttributes="Bold"/>
+                                                <Label Text="{Binding BusinessPhoneNumber}"/>
+                                                <Label Text="{Binding BusinessProblem}" LineBreakMode="WordWrap"/>
+                                                <Label Text="{Binding AddRecordDate, StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontSize="12" TextColor="Gray"/>
+                                                <Label Text="{Binding Meeting}"/>
                                             </StackLayout>
-                                        </Frame>
+                                        </Border>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>

@@ -88,7 +88,7 @@ public partial class KayitEklePage : ContentPage
             Refresh.IsRefreshing = true;
             LoadData();
         }
-        catch (SqlException ex) 
+        catch (SqlException ex)
         {
             Refresh.IsRefreshing = false;
             Shell.Current.DisplayAlert("Sistem", $"Sql Hatası : {ex.Message}", "Tamam");
@@ -111,7 +111,28 @@ public partial class KayitEklePage : ContentPage
 
     private void BtnClear_Clicked(object sender, EventArgs e)
     {
-        DataSeeder.SeedData(10);
-        DisplayAlert("Başarılı", "10 rastgele kayıt eklendi!", "Tamam");
+        //DataSeeder.SeedData(10);
+        //DisplayAlert("Başarılı", "10 rastgele kayıt eklendi!", "Tamam");
+    }
+
+    private void BtnAdd_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void AgreementList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        try
+        {
+            
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+
+        }
     }
 }

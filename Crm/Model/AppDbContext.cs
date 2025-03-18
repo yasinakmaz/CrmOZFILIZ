@@ -9,6 +9,7 @@
         public DbSet<TblWaiterList> TBLRECORDLIST { get; set; }
         public DbSet<TblStatus> TBLSTATUS { get; set; }
 
+
         private readonly string _connectionString;
 
         public AppDbContext(string connectionString)

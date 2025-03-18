@@ -5,10 +5,10 @@ public partial class AgreementShowUpdate : Popup
     private string sqlservices;
     private TblAgreement selectedAgreement;
     public AgreementShowUpdate()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         OnLoad();
-	}
+    }
 
     private async void OnLoad()
     {
